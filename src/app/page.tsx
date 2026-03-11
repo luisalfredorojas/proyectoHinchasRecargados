@@ -8,6 +8,7 @@ import type { PrizeType } from '@/types';
 export default function Home() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [prizeType, setPrizeType] = useState<PrizeType | null>(null);
+  const [formKey, setFormKey] = useState(0);
 
   const handleSuccess = (receivedPrizeType: string) => {
     setPrizeType(receivedPrizeType as PrizeType);
@@ -17,6 +18,7 @@ export default function Home() {
   const handleCloseModal = () => {
     setShowSuccess(false);
     setPrizeType(null);
+    setFormKey((k) => k + 1);
   };
 
   return (
@@ -36,7 +38,7 @@ export default function Home() {
       {/* ── MOBILE: Section 2 — Form ── */}
       <section id="registro" className="lg:hidden min-h-screen flex items-start justify-center px-4 pt-10 pb-12 bg-black">
         <div className="w-full max-w-md">
-          <WizardForm onSuccess={handleSuccess} />
+          <WizardForm key={formKey} onSuccess={handleSuccess} />
         </div>
       </section>
 
@@ -47,7 +49,7 @@ export default function Home() {
         {/* Right side — form, vertically centered */}
         <div className="flex items-center justify-center px-8 py-12">
           <div className="w-full max-w-md">
-            <WizardForm onSuccess={handleSuccess} />
+            <WizardForm key={formKey} onSuccess={handleSuccess} />
           </div>
         </div>
       </main>
