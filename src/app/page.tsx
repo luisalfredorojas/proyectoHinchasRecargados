@@ -43,7 +43,7 @@ export default function Home() {
       </section>
 
       {/* ── DESKTOP: Single section — grid: left empty (background), right form ── */}
-      <main className="hidden lg:grid lg:grid-cols-[1fr_480px] xl:grid-cols-[1fr_520px] min-h-screen bg-black bg-[url('/images/bg-desktop.png')] bg-cover bg-center">
+      <main className="hidden lg:grid lg:grid-cols-[1fr_480px] xl:grid-cols-[1fr_520px] min-h-screen bg-black bg-[url('/images/bg-desktop.png')] bg-cover bg-top">
         {/* Left side — empty, background will fill this */}
         <div />
         {/* Right side — form, vertically centered */}
