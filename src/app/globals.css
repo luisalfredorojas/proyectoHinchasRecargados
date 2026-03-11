@@ -50,7 +50,7 @@ body {
 
 /* Safe area for mobile bottom bar (Chrome, Safari) */
 .mobile-safe-bottom {
-  padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
+  padding-bottom: max(5rem, env(safe-area-inset-bottom, 5rem));
 }
 
 /* Smooth scroll */
