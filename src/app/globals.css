@@ -8,6 +8,8 @@
   --duracell-blue: #1B6B8A;
   --duracell-black: #000000;
   --font-sans: 'Inter', Arial, Helvetica, sans-serif;
+  --brand-primary: #BE7753;
+  --brand-secondary: #F2B38C;
 }
 
 body {
@@ -16,9 +18,19 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Gold glow text */
+/* Brand glow text */
 .text-glow-gold {
-  text-shadow: 0 0 10px #D4A843, 0 0 20px #D4A843, 0 0 40px #D4A84380;
+  text-shadow: 0 0 10px #BE7753, 0 0 20px #F2B38C, 0 0 40px #BE775380;
+}
+
+/* Brand gradient hover utility — apply to any interactive element */
+.hover-brand-gradient {
+  transition: background 300ms ease, color 300ms ease, border-color 300ms ease;
+}
+.hover-brand-gradient:hover {
+  background: linear-gradient(to right, #BE7753, #F2B38C);
+  color: #000;
+  border-color: transparent;
 }
 
 /* Scrollbar styling */
@@ -29,8 +41,11 @@ body {
   background: #111;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D4A843;
+  background: linear-gradient(to bottom, #BE7753, #F2B38C);
   border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #F2B38C, #BE7753);
 }
 
 /* Hero backgrounds */

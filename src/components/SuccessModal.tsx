@@ -37,10 +37,10 @@ function CinemaIcon() {
       xmlns="http://www.w3.org/2000/svg"
       aria-label="Cine en casa"
     >
-      <rect x="4" y="10" width="40" height="26" rx="3" stroke="#D4A843" strokeWidth="2.5" />
-      <circle cx="24" cy="23" r="7" stroke="#D4A843" strokeWidth="2.5" />
-      <path d="M21 23l6 3-6 3V23z" fill="#D4A843" />
-      <path d="M12 36v4M36 36v4M16 40h16" stroke="#D4A843" strokeWidth="2.5" strokeLinecap="round" />
+      <rect x="4" y="10" width="40" height="26" rx="3" stroke="#BE7753" strokeWidth="2.5" />
+      <circle cx="24" cy="23" r="7" stroke="#BE7753" strokeWidth="2.5" />
+      <path d="M21 23l6 3-6 3V23z" fill="#BE7753" />
+      <path d="M12 36v4M36 36v4M16 40h16" stroke="#BE7753" strokeWidth="2.5" strokeLinecap="round" />
     </svg>
   );
 }
@@ -57,13 +57,13 @@ function JerseyIcon() {
     >
       <path
         d="M16 6l-10 8 4 4 2-2v26h24V16l2 2 4-4-10-8c-1 3-5 5-12 5S17 9 16 6z"
-        stroke="#D4A843"
+        stroke="#BE7753"
         strokeWidth="2.5"
         strokeLinejoin="round"
       />
       {/* Ecuador stripe */}
       <path d="M17 20h14" stroke="#2D8C3C" strokeWidth="3" strokeLinecap="round" />
-      <path d="M17 26h14" stroke="#D4A843" strokeWidth="3" strokeLinecap="round" />
+      <path d="M17 26h14" stroke="#BE7753" strokeWidth="3" strokeLinecap="round" />
       <path d="M17 32h14" stroke="#cc0000" strokeWidth="3" strokeLinecap="round" />
     </svg>
   );
@@ -129,7 +129,7 @@ export default function SuccessModal({ isOpen, onClose, prizeType }: SuccessModa
                 width: p.size,
                 height: p.size,
                 borderRadius: '50%',
-                background: '#D4A843',
+                background: '#BE7753',
               }}
             />
           ))}
@@ -150,7 +150,7 @@ export default function SuccessModal({ isOpen, onClose, prizeType }: SuccessModa
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.25 }}
           className="text-2xl font-bold tracking-tight"
-          style={{ color: '#D4A843', fontFamily: 'var(--font-bebas)' }}
+          style={{ color: '#BE7753', fontFamily: 'var(--font-bebas)' }}
         >
           ¡Registro exitoso!
         </motion.h2>
@@ -191,8 +191,8 @@ export default function SuccessModal({ isOpen, onClose, prizeType }: SuccessModa
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4, delay: 0.65 }}
           onClick={onClose}
-          className="mt-2 px-8 py-3 rounded-xl font-semibold text-sm uppercase tracking-wider transition-all duration-200 hover:bg-[#D4A843] hover:text-black active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-          style={{ border: '2px solid #D4A843', color: '#D4A843' }}
+          className="mt-2 px-8 py-3 rounded-xl font-semibold text-sm uppercase tracking-wider transition-all duration-300 hover:bg-gradient-to-r hover:from-[#BE7753] hover:to-[#F2B38C] hover:text-black hover:border-transparent active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BE7753] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          style={{ border: '2px solid #BE7753', color: '#BE7753' }}
         >
           Cerrar
         </motion.button>

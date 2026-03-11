@@ -19,7 +19,7 @@ function ChevronDownIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-4 w-4 text-[#D4A843] pointer-events-none"
+      className="h-4 w-4 text-[#BE7753] pointer-events-none"
       viewBox="0 0 20 20"
       fill="currentColor"
       aria-hidden="true"
@@ -69,11 +69,11 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(function 
             'w-full appearance-none bg-white/10 text-white',
             'border rounded-xl px-4 py-3 pr-10',
             'transition-all duration-200',
-            'focus:outline-none focus:ring-2 focus:ring-[#D4A843]/30',
-            '[&>option]:bg-[#0d1f2d] [&>option]:text-white',
+            'focus:outline-none focus:ring-2 focus:ring-[#BE7753]/30',
+            '[&>option]:bg-black [&>option]:text-white',
             error
               ? 'border-red-500 focus:border-red-500'
-              : 'border-white/20 focus:border-[#D4A843]',
+              : 'border-white/20 focus:border-[#BE7753]',
           ].join(' ')}
           defaultValue=""
           {...rest}

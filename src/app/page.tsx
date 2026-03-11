@@ -28,7 +28,7 @@ export default function Home() {
         <div className="p-6 mobile-safe-bottom">
           <a
             href="#registro"
-            className="block w-full text-center font-bold text-lg py-4 rounded-xl bg-[#D4A843] text-black transition-all active:scale-[0.97] hover:brightness-110"
+            className="block w-full text-center font-bold text-lg py-4 rounded-xl bg-gradient-to-r from-[#BE7753] to-[#F2B38C] text-black transition-all duration-300 active:scale-[0.97] hover:brightness-110"
           >
             ¡Participa ya!
           </a>

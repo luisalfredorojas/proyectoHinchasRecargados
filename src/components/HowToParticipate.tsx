@@ -134,7 +134,7 @@ export default function HowToParticipate() {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="text-center text-3xl font-bold mb-12 tracking-tight"
-          style={{ color: '#D4A843' }}
+          style={{ color: '#BE7753' }}
         >
           ¿Cómo participar?
         </motion.h2>
@@ -164,13 +164,13 @@ export default function HowToParticipate() {
                     border: '2px solid rgba(212,168,67,0.5)',
                   }}
                 >
-                  <span className="text-[#D4A843]">{step.icon}</span>
+                  <span className="text-[#BE7753]">{step.icon}</span>
                 </div>
 
                 {/* Step number badge */}
                 <div
                   className="absolute -top-2 -right-2 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-black"
-                  style={{ background: '#D4A843' }}
+                  style={{ background: '#BE7753' }}
                   aria-label={`Paso ${step.number}`}
                 >
                   {step.number}
@@ -185,7 +185,7 @@ export default function HowToParticipate() {
                   style={{
                     width: '60px',
                     height: '2px',
-                    background: 'linear-gradient(to right, #D4A843, transparent)',
+                    background: 'linear-gradient(to right, #BE7753, transparent)',
                     right: '-30px',
                     top: '40px',
                   }}

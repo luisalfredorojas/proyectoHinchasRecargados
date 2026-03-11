@@ -19,11 +19,12 @@ interface ButtonProps {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary: [
-    'bg-gradient-to-br from-[#D4A843] to-[#B8902F]',
+    'bg-gradient-to-r from-[#BE7753] to-[#F2B38C]',
     'text-black font-bold',
-    'hover:from-[#B8902F] hover:to-[#9A7520]',
-    'shadow-[0_0_20px_rgba(212,168,67,0.35)]',
-    'hover:shadow-[0_0_28px_rgba(212,168,67,0.55)]',
+    'hover:from-[#BE7753] hover:to-[#F2B38C]',
+    'shadow-[0_0_20px_rgba(190,119,83,0.35)]',
+    'hover:shadow-[0_0_28px_rgba(242,179,140,0.55)]',
+    'hover:brightness-110',
     'active:scale-[0.98]',
   ].join(' '),
 
@@ -36,9 +37,9 @@ const variantClasses: Record<ButtonVariant, string> = {
 
   outline: [
     'bg-transparent',
-    'border-2 border-[#D4A843]',
-    'text-[#D4A843] font-semibold',
-    'hover:bg-[#D4A843] hover:text-black',
+    'border-2 border-[#BE7753]',
+    'text-[#BE7753] font-semibold',
+    'hover:bg-gradient-to-r hover:from-[#BE7753] hover:to-[#F2B38C] hover:text-black hover:border-transparent',
     'active:scale-[0.98]',
   ].join(' '),
 };
@@ -97,7 +98,7 @@ export function Button({
       className={[
         'w-full rounded-xl transition-all duration-200',
         'inline-flex items-center justify-center gap-2',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843] focus-visible:ring-offset-2 focus-visible:ring-offset-black',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BE7753] focus-visible:ring-offset-2 focus-visible:ring-offset-black',
         variantClasses[variant],
         sizeClasses[size],
         isDisabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : '',

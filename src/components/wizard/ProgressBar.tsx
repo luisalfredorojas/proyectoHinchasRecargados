@@ -32,15 +32,15 @@ export function ProgressBar({ currentStep, totalSteps = 6 }: ProgressBarProps) {
                     isCompleted
                       ? 'bg-[#2D8C3C] border-[#2D8C3C] text-white'
                       : isActive
-                        ? 'bg-[#D4A843] border-[#D4A843] text-black'
+                        ? 'bg-[#BE7753] border-[#BE7753] text-black'
                         : 'bg-transparent border-white/20 text-white/40',
                   ].join(' ')}
                   initial={false}
                   animate={{
                     scale: isActive ? 1.12 : 1,
                     boxShadow: isActive
-                      ? '0 0 0 4px rgba(212,168,67,0.25)'
-                      : '0 0 0 0px rgba(212,168,67,0)',
+                      ? '0 0 0 4px rgba(190,119,83,0.25)'
+                      : '0 0 0 0px rgba(190,119,83,0)',
                   }}
                   transition={{ duration: 0.25 }}
                   aria-current={isActive ? 'step' : undefined}
@@ -68,7 +68,7 @@ export function ProgressBar({ currentStep, totalSteps = 6 }: ProgressBarProps) {
                     isCompleted
                       ? 'text-[#2D8C3C]'
                       : isActive
-                        ? 'text-[#D4A843]'
+                        ? 'text-[#BE7753]'
                         : 'text-white/30',
                   ].join(' ')}
                 >
@@ -83,7 +83,7 @@ export function ProgressBar({ currentStep, totalSteps = 6 }: ProgressBarProps) {
                   <div className="absolute inset-0 bg-white/15 rounded-full" />
                   {/* Gold fill */}
                   <motion.div
-                    className="absolute inset-y-0 left-0 bg-[#D4A843] rounded-full"
+                    className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#BE7753] to-[#F2B38C] rounded-full"
                     initial={false}
                     animate={{ width: lineCompleted ? '100%' : '0%' }}
                     transition={{ duration: 0.35, ease: 'easeInOut' }}

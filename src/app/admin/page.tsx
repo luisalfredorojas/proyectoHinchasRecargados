@@ -224,7 +224,7 @@ function DetailModal({ participant, onClose }: DetailModalProps) {
             type="button"
             onClick={onClose}
             aria-label="Cerrar modal"
-            className="flex items-center justify-center h-8 w-8 rounded-full text-white/60 hover:text-white bg-white/10 hover:bg-white/20 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60"
+            className="flex items-center justify-center h-8 w-8 rounded-full text-white/60 hover:text-white bg-white/10 hover:bg-white/20 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BE7753]/60"
           >
             <IconX />
           </button>
@@ -277,7 +277,7 @@ function DetailModal({ participant, onClose }: DetailModalProps) {
                 href={participant.invoice_signed_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#D4A843]/10 border border-[#D4A843]/30 text-[#D4A843] text-sm font-medium hover:bg-[#D4A843]/20 transition-colors duration-150"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#BE7753]/10 border border-[#BE7753]/30 text-[#BE7753] text-sm font-medium hover:bg-gradient-to-r hover:from-[#BE7753] hover:to-[#F2B38C] hover:text-black hover:border-transparent transition-all duration-300"
               >
                 <IconDownload />
                 Ver Factura
@@ -332,20 +332,20 @@ function LoginForm({ onSuccess }: LoginFormProps) {
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, #D4A843 1px, transparent 0)',
+          backgroundImage: 'radial-gradient(circle at 1px 1px, #BE7753 1px, transparent 0)',
           backgroundSize: '40px 40px',
         }}
         aria-hidden="true"
       />
 
-      {/* Gold top accent */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D4A843] to-transparent" aria-hidden="true" />
+      {/* Brand top accent */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#BE7753] to-[#F2B38C]" aria-hidden="true" />
 
       <div className="relative w-full max-w-md">
         {/* Logo / branding area */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#D4A843]/10 border border-[#D4A843]/20 mb-4">
-            <svg className="w-8 h-8 text-[#D4A843]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#BE7753]/10 border border-[#BE7753]/20 mb-4">
+            <svg className="w-8 h-8 text-[#BE7753]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
               <path d="M7 11V7a5 5 0 0 1 10 0v4" />
             </svg>
@@ -353,7 +353,7 @@ function LoginForm({ onSuccess }: LoginFormProps) {
           <h1 className="text-xl font-bold text-white leading-tight">
             Panel de Administración
           </h1>
-          <p className="text-[#D4A843] text-sm font-medium mt-1 tracking-wide">
+          <p className="text-[#BE7753] text-sm font-medium mt-1 tracking-wide">
             Hinchas Recargados
           </p>
         </div>
@@ -374,7 +374,7 @@ function LoginForm({ onSuccess }: LoginFormProps) {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Ingresa tu usuario"
-                className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl text-white placeholder-white/25 text-sm focus:outline-none focus:border-[#D4A843]/60 focus:ring-1 focus:ring-[#D4A843]/30 transition-colors duration-150"
+                className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl text-white placeholder-white/25 text-sm focus:outline-none focus:border-[#BE7753]/60 focus:ring-1 focus:ring-[#BE7753]/30 transition-colors duration-150"
               />
             </div>
 
@@ -391,7 +391,7 @@ function LoginForm({ onSuccess }: LoginFormProps) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl text-white placeholder-white/25 text-sm focus:outline-none focus:border-[#D4A843]/60 focus:ring-1 focus:ring-[#D4A843]/30 transition-colors duration-150"
+                className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl text-white placeholder-white/25 text-sm focus:outline-none focus:border-[#BE7753]/60 focus:ring-1 focus:ring-[#BE7753]/30 transition-colors duration-150"
               />
             </div>
 
@@ -415,7 +415,7 @@ function LoginForm({ onSuccess }: LoginFormProps) {
               type="submit"
               disabled={loading || !username || !password}
               aria-busy={loading}
-              className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-br from-[#D4A843] to-[#B8902F] text-black font-bold rounded-xl shadow-[0_0_20px_rgba(212,168,67,0.3)] hover:shadow-[0_0_28px_rgba(212,168,67,0.5)] hover:from-[#B8902F] hover:to-[#9A7520] active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none"
+              className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#BE7753] to-[#F2B38C] text-black font-bold rounded-xl shadow-[0_0_20px_rgba(190,119,83,0.3)] hover:shadow-[0_0_28px_rgba(242,179,140,0.5)] hover:brightness-110 active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none"
             >
               {loading ? (
                 <>
@@ -550,22 +550,22 @@ function AdminDashboard({ onLogout }: AdminDashboardProps) {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
-      {/* Gold top accent line */}
-      <div className="h-1 bg-gradient-to-r from-transparent via-[#D4A843] to-transparent" aria-hidden="true" />
+      {/* Brand top accent line */}
+      <div className="h-1 bg-gradient-to-r from-[#BE7753] to-[#F2B38C]" aria-hidden="true" />
 
       {/* ── Header ── */}
       <header className="sticky top-0 z-30 bg-black/90 border-b border-white/8 backdrop-blur-md">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#D4A843]/10 border border-[#D4A843]/20 shrink-0" aria-hidden="true">
-              <svg className="w-4 h-4 text-[#D4A843]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#BE7753]/10 border border-[#BE7753]/20 shrink-0" aria-hidden="true">
+              <svg className="w-4 h-4 text-[#BE7753]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                 <path d="M7 11V7a5 5 0 0 1 10 0v4" />
               </svg>
             </div>
             <div className="min-w-0">
               <h1 className="text-sm font-bold text-white truncate">Panel de Administración</h1>
-              <p className="text-[10px] text-[#D4A843]/70 font-medium tracking-wide truncate hidden sm:block">
+              <p className="text-[10px] text-[#BE7753]/70 font-medium tracking-wide truncate hidden sm:block">
                 Hinchas Recargados &mdash; Duracell Ecuador
               </p>
             </div>
@@ -627,7 +627,7 @@ function AdminDashboard({ onLogout }: AdminDashboardProps) {
               value={storeFilter}
               onChange={(e) => handleStoreFilterChange(e.target.value)}
               aria-label="Filtrar por local"
-              className="appearance-none w-full sm:w-56 pl-4 pr-8 py-2.5 bg-gray-950 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-[#D4A843]/50 focus:ring-1 focus:ring-[#D4A843]/20 transition-colors duration-150 cursor-pointer"
+              className="appearance-none w-full sm:w-56 pl-4 pr-8 py-2.5 bg-gray-950 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-[#BE7753]/50 focus:ring-1 focus:ring-[#BE7753]/20 transition-colors duration-150 cursor-pointer"
             >
               <option value="">Todos los locales</option>
               {STORES.map((store) => (
@@ -654,7 +654,7 @@ function AdminDashboard({ onLogout }: AdminDashboardProps) {
               onChange={(e) => handleSearchChange(e.target.value)}
               placeholder="Buscar por nombre o cédula..."
               aria-label="Buscar participante por nombre o cédula"
-              className="w-full pl-9 pr-4 py-2.5 bg-gray-950 border border-white/10 rounded-xl text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#D4A843]/50 focus:ring-1 focus:ring-[#D4A843]/20 transition-colors duration-150"
+              className="w-full pl-9 pr-4 py-2.5 bg-gray-950 border border-white/10 rounded-xl text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#BE7753]/50 focus:ring-1 focus:ring-[#BE7753]/20 transition-colors duration-150"
             />
             {search && (
               <button
@@ -677,7 +677,7 @@ function AdminDashboard({ onLogout }: AdminDashboardProps) {
             onClick={handleExportCSV}
             disabled={exportLoading}
             aria-busy={exportLoading}
-            className="flex items-center justify-center gap-2 px-4 py-2.5 bg-[#D4A843]/10 border border-[#D4A843]/30 text-[#D4A843] text-sm font-semibold rounded-xl hover:bg-[#D4A843]/20 hover:border-[#D4A843]/50 active:scale-[0.98] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
+            className="flex items-center justify-center gap-2 px-4 py-2.5 bg-[#BE7753]/10 border border-[#BE7753]/30 text-[#BE7753] text-sm font-semibold rounded-xl hover:bg-gradient-to-r hover:from-[#BE7753] hover:to-[#F2B38C] hover:text-black hover:border-transparent active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
           >
             {exportLoading ? <IconSpinner /> : <IconDownload />}
             <span>Exportar CSV</span>
@@ -757,7 +757,7 @@ function AdminDashboard({ onLogout }: AdminDashboardProps) {
                         className={[
                           'border-b border-white/5 cursor-pointer group',
                           'hover:bg-white/5 active:bg-white/8',
-                          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#D4A843]/40',
+                          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#BE7753]/40',
                           'transition-colors duration-100',
                           isEven ? 'bg-transparent' : 'bg-white/[0.02]',
                         ].join(' ')}
@@ -766,7 +766,7 @@ function AdminDashboard({ onLogout }: AdminDashboardProps) {
                           {rowNumber}
                         </td>
                         <td className="px-4 py-3">
-                          <span className="text-white font-medium group-hover:text-[#D4A843] transition-colors duration-100">
+                          <span className="text-white font-medium group-hover:text-[#BE7753] transition-colors duration-300">
                             {p.full_name}
                           </span>
                         </td>
@@ -790,7 +790,7 @@ function AdminDashboard({ onLogout }: AdminDashboardProps) {
                           {formatDate(p.created_at)}
                         </td>
                         <td className="px-4 py-3 text-right">
-                          <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg text-white/30 group-hover:text-[#D4A843] group-hover:bg-[#D4A843]/10 transition-all duration-100">
+                          <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg text-white/30 group-hover:text-[#BE7753] group-hover:bg-[#BE7753]/10 transition-all duration-300">
                             <IconEye />
                           </span>
                         </td>
@@ -876,7 +876,7 @@ interface StatCardProps {
 }
 
 const STAT_COLORS: Record<StatCardProps['color'], { border: string; icon: string; text: string }> = {
-  gold:  { border: 'border-[#D4A843]/20', icon: 'text-[#D4A843] bg-[#D4A843]/10', text: 'text-[#D4A843]' },
+  gold:  { border: 'border-[#BE7753]/20', icon: 'text-[#BE7753] bg-[#BE7753]/10', text: 'text-[#BE7753]' },
   blue:  { border: 'border-[#1B6B8A]/30', icon: 'text-[#5BB8D4] bg-[#1B6B8A]/10', text: 'text-[#5BB8D4]' },
   green: { border: 'border-[#2D8C3C]/30', icon: 'text-[#5DC970] bg-[#2D8C3C]/10', text: 'text-[#5DC970]' },
 };

@@ -20,7 +20,7 @@ function CameraIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-10 w-10 text-[#D4A843]/70"
+      className="h-10 w-10 text-[#BE7753]/70"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -45,7 +45,7 @@ function UploadIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6 text-[#D4A843]/50"
+      className="h-6 w-6 text-[#BE7753]/50"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -161,12 +161,12 @@ export function FileUpload({
           'min-h-[200px] rounded-2xl cursor-pointer',
           'border-2 border-dashed transition-all duration-200',
           'bg-white/5 overflow-hidden',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/50',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BE7753]/50',
           isDragging
-            ? 'border-[#D4A843] bg-[#D4A843]/10 scale-[1.01]'
+            ? 'border-[#BE7753] bg-[#BE7753]/10 scale-[1.01]'
             : error
               ? 'border-red-500/60 hover:border-red-500'
-              : 'border-[#D4A843]/40 hover:border-[#D4A843]/80 hover:bg-white/8',
+              : 'border-[#BE7753]/40 hover:border-[#BE7753]/80 hover:bg-white/8',
         ].join(' ')}
       >
         {preview ? (
@@ -189,7 +189,7 @@ export function FileUpload({
                     e.stopPropagation();
                     inputRef.current?.click();
                   }}
-                  className="px-4 py-1.5 rounded-lg bg-[#D4A843] text-black text-sm font-bold hover:bg-[#B8902F] transition-colors"
+                  className="px-4 py-1.5 rounded-lg bg-gradient-to-r from-[#BE7753] to-[#F2B38C] text-black text-sm font-bold hover:brightness-110 transition-all duration-300"
                 >
                   Cambiar
                 </button>

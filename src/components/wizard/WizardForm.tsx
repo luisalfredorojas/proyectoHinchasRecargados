@@ -297,10 +297,12 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
 
   return (
     <div id="registro" className="w-full max-w-md mx-auto">
+      {/* Gradient border wrapper */}
+      <div className="p-[2px] rounded-2xl bg-gradient-to-br from-[#BE7753] to-[#F2B38C] shadow-2xl shadow-[#BE7753]/20">
       <form
         onSubmit={handleSubmit(onSubmit)}
         noValidate
-        className="bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 shadow-2xl"
+        className="bg-black rounded-2xl p-6"
       >
         {/* Progress indicator */}
         <ProgressBar currentStep={currentStep} totalSteps={6} />
@@ -365,6 +367,7 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
           </div>
         )}
       </form>
+      </div>
     </div>
   );
 }

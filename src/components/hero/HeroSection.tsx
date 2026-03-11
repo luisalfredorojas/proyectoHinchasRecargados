@@ -18,12 +18,12 @@ export default function HeroSection() {
       {/* Duracell logo placeholder */}
       <div className="absolute top-6 left-1/2 -translate-x-1/2 lg:left-8 lg:translate-x-0 z-10">
         <div
-          className="flex items-center justify-center w-[200px] h-[80px] border border-[#D4A843]/40 rounded-lg"
+          className="flex items-center justify-center w-[200px] h-[80px] border border-[#BE7753]/40 rounded-lg"
           aria-label="Logo Duracell (placeholder)"
         >
           <span
             className="text-2xl font-bold tracking-[0.25em]"
-            style={{ color: '#D4A843', fontFamily: 'var(--font-bebas)' }}
+            style={{ color: '#BE7753', fontFamily: 'var(--font-bebas)' }}
           >
             DURACELL
           </span>
@@ -41,9 +41,9 @@ export default function HeroSection() {
             transition={{ duration: 0.7, ease: 'easeOut' }}
             className="text-4xl sm:text-6xl lg:text-7xl font-bold uppercase leading-none tracking-tight"
             style={{
-              color: '#D4A843',
+              color: '#BE7753',
               fontFamily: 'var(--font-bebas)',
-              textShadow: '0 0 20px #D4A843, 0 0 40px #D4A843',
+              textShadow: '0 0 20px #BE7753, 0 0 40px #BE7753',
             }}
           >
             ¡Hinchas
@@ -67,10 +67,10 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
             onClick={handleParticipate}
-            className="mt-2 px-8 py-4 rounded-xl font-bold text-base sm:text-lg uppercase tracking-widest text-black transition-all duration-200 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            className="mt-2 px-8 py-4 rounded-xl font-bold text-base sm:text-lg uppercase tracking-widest text-black transition-all duration-300 hover:brightness-110 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BE7753] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             style={{
-              background: 'linear-gradient(135deg, #D4A843 0%, #B8902F 100%)',
-              boxShadow: '0 0 24px rgba(212, 168, 67, 0.5)',
+              background: 'linear-gradient(to right, #BE7753 0%, #F2B38C 100%)',
+              boxShadow: '0 0 24px rgba(190, 119, 83, 0.5)',
             }}
             aria-label="Ir a la sección de registro"
           >
@@ -84,7 +84,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-            className="flex items-center justify-center w-[300px] h-[300px] border-2 border-dashed border-[#D4A843] rounded-lg text-center p-6"
+            className="flex items-center justify-center w-[300px] h-[300px] border-2 border-dashed border-[#BE7753] rounded-lg text-center p-6"
             aria-label="Imagen del Conejo Duracell (placeholder)"
           >
             {/* Bunny outline icon */}
@@ -98,17 +98,17 @@ export default function HeroSection() {
                 aria-hidden="true"
               >
                 {/* Ears */}
-                <ellipse cx="28" cy="22" rx="8" ry="18" stroke="#D4A843" strokeWidth="2.5" />
-                <ellipse cx="52" cy="22" rx="8" ry="18" stroke="#D4A843" strokeWidth="2.5" />
+                <ellipse cx="28" cy="22" rx="8" ry="18" stroke="#BE7753" strokeWidth="2.5" />
+                <ellipse cx="52" cy="22" rx="8" ry="18" stroke="#BE7753" strokeWidth="2.5" />
                 {/* Head */}
-                <circle cx="40" cy="46" r="18" stroke="#D4A843" strokeWidth="2.5" />
+                <circle cx="40" cy="46" r="18" stroke="#BE7753" strokeWidth="2.5" />
                 {/* Eyes */}
-                <circle cx="33" cy="42" r="2.5" fill="#D4A843" />
-                <circle cx="47" cy="42" r="2.5" fill="#D4A843" />
+                <circle cx="33" cy="42" r="2.5" fill="#BE7753" />
+                <circle cx="47" cy="42" r="2.5" fill="#BE7753" />
                 {/* Nose */}
-                <ellipse cx="40" cy="50" rx="3" ry="2" fill="#D4A843" />
+                <ellipse cx="40" cy="50" rx="3" ry="2" fill="#BE7753" />
               </svg>
-              <span className="text-sm text-[#D4A843]/80 font-medium leading-snug">
+              <span className="text-sm text-[#BE7753]/80 font-medium leading-snug">
                 Imagen del Conejo Duracell
               </span>
             </div>

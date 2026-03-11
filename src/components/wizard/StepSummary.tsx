@@ -46,7 +46,7 @@ function PencilIcon() {
 
 function SummaryRow({ label, value, step, onEdit }: SummaryRowProps) {
   return (
-    <div className="flex items-center justify-between gap-3 py-3 border-b border-white/10 last:border-0">
+    <div className="flex items-center justify-between gap-3 py-3 border-b border-white/15 last:border-0">
       <div className="min-w-0">
         <p className="text-xs text-white/50 uppercase tracking-wide font-medium mb-0.5">
           {label}
@@ -58,9 +58,9 @@ function SummaryRow({ label, value, step, onEdit }: SummaryRowProps) {
         onClick={() => onEdit(step)}
         aria-label={`Editar ${label}`}
         className={[
-          'shrink-0 p-1.5 rounded-lg text-[#D4A843]',
-          'hover:bg-[#D4A843]/10 transition-colors duration-150',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]',
+          'shrink-0 p-1.5 rounded-lg text-[#BE7753]',
+          'hover:bg-gradient-to-r hover:from-[#BE7753] hover:to-[#F2B38C] hover:text-black transition-all duration-300',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BE7753]',
         ].join(' ')}
       >
         <PencilIcon />
@@ -98,7 +98,7 @@ export function StepSummary({ formData, onEdit, isSubmitting }: StepSummaryProps
       </div>
 
       {/* Summary card */}
-      <div className="bg-white/5 border border-white/10 rounded-xl px-4 py-1">
+      <div className="bg-white/5 border border-white/15 rounded-xl px-4 py-1">
         {rows.map((row) => (
           <SummaryRow
             key={row.step}
@@ -134,9 +134,9 @@ export function StepSummary({ formData, onEdit, isSubmitting }: StepSummaryProps
             onClick={() => onEdit(5)}
             aria-label="Editar factura"
             className={[
-              'shrink-0 p-1.5 rounded-lg text-[#D4A843]',
-              'hover:bg-[#D4A843]/10 transition-colors duration-150',
-              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]',
+              'shrink-0 p-1.5 rounded-lg text-[#BE7753]',
+              'hover:bg-gradient-to-r hover:from-[#BE7753] hover:to-[#F2B38C] hover:text-black transition-all duration-300',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BE7753]',
             ].join(' ')}
           >
             <PencilIcon />

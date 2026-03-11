@@ -143,7 +143,7 @@ export function Modal({ isOpen, onClose, children, className = '' }: ModalProps)
                 'text-white/60 hover:text-white',
                 'bg-white/10 hover:bg-white/20',
                 'transition-all duration-150',
-                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843]/60',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BE7753]/60',
               ].join(' ')}
             >
               <CloseIcon />

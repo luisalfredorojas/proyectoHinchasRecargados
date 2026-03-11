@@ -17,6 +17,10 @@ const config: Config = {
           blue: "#1B6B8A",
           black: "#000000",
         },
+        brand: {
+          primary: "#BE7753",
+          secondary: "#F2B38C",
+        },
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],
@@ -27,8 +31,8 @@ const config: Config = {
       },
       keyframes: {
         "glow-pulse": {
-          "0%, 100%": { textShadow: "0 0 10px #D4A843, 0 0 20px #D4A843" },
-          "50%": { textShadow: "0 0 20px #D4A843, 0 0 40px #D4A843, 0 0 60px #D4A843" },
+          "0%, 100%": { textShadow: "0 0 10px #BE7753, 0 0 20px #F2B38C" },
+          "50%": { textShadow: "0 0 20px #BE7753, 0 0 40px #F2B38C, 0 0 60px #BE7753" },
         },
       },
     },

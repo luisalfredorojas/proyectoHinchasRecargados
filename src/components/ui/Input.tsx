@@ -30,10 +30,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Inp
     'w-full bg-white/10 text-white placeholder-white/50',
     'border rounded-xl px-4 py-3',
     'transition-all duration-200',
-    'focus:outline-none focus:ring-2 focus:ring-[#D4A843]/30',
+    'focus:outline-none focus:ring-2 focus:ring-[#BE7753]/30',
     error
       ? 'border-red-500 focus:border-red-500'
-      : 'border-white/20 focus:border-[#D4A843]',
+      : 'border-white/20 focus:border-[#BE7753]',
   ].join(' ');
 
   return (
