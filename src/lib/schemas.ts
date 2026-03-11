@@ -32,8 +32,8 @@ export const registerSchema = z.object({
    */
   cedula: z
     .string()
-    .regex(/^(\d{9}|\d{13})$/, {
-      message: 'La cédula debe tener 9 dígitos o el RUC 13 dígitos',
+    .regex(/^(\d{10}|\d{13})$/, {
+      message: 'La cédula debe tener 10 dígitos o el RUC 13 dígitos',
     }),
 
   /**
