@@ -21,10 +21,9 @@ export default function Home() {
 
   return (
     <>
-      {/* ── MOBILE: Section 1 — Full-screen hero (background placeholder) ── */}
-      <section className="lg:hidden min-h-screen flex flex-col justify-end bg-black">
-        {/* Background image will go here — black placeholder for now */}
-        <div className="p-6 pb-10">
+      {/* ── MOBILE: Section 1 — Full-screen hero ── */}
+      <section className="lg:hidden min-h-screen flex flex-col justify-end bg-black bg-[url('/images/bg-mobile.png')] bg-[length:100%_auto] bg-top bg-no-repeat">
+        <div className="p-6 mobile-safe-bottom">
           <a
             href="#registro"
             className="block w-full text-center font-bold text-lg py-4 rounded-xl bg-[#D4A843] text-black transition-all active:scale-[0.97] hover:brightness-110"
@@ -42,7 +41,7 @@ export default function Home() {
       </section>
 
       {/* ── DESKTOP: Single section — grid: left empty (background), right form ── */}
-      <main className="hidden lg:grid lg:grid-cols-[1fr_480px] xl:grid-cols-[1fr_520px] min-h-screen bg-black">
+      <main className="hidden lg:grid lg:grid-cols-[1fr_480px] xl:grid-cols-[1fr_520px] min-h-screen bg-black bg-[url('/images/bg-desktop.png')] bg-cover bg-center">
         {/* Left side — empty, background will fill this */}
         <div />
         {/* Right side — form, vertically centered */}

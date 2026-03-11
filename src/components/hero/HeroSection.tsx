@@ -13,11 +13,7 @@ export default function HeroSection() {
   return (
     <section
       aria-label="Hero Hinchas Recargados"
-      className="relative flex flex-col items-center justify-center overflow-hidden bg-black min-h-screen lg:min-h-[80vh]"
-      style={{
-        background:
-          'radial-gradient(ellipse at center, #111111 0%, #000000 70%)',
-      }}
+      className="relative flex flex-col items-center justify-center overflow-hidden min-h-screen lg:min-h-[80vh] hero-bg"
     >
       {/* Duracell logo placeholder */}
       <div className="absolute top-6 left-1/2 -translate-x-1/2 lg:left-8 lg:translate-x-0 z-10">

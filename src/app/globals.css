@@ -33,6 +33,26 @@ body {
   border-radius: 4px;
 }
 
+/* Hero backgrounds */
+.hero-bg {
+  background-image: url('/images/bg-mobile.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 1024px) {
+  .hero-bg {
+    background-image: url('/images/bg-desktop.png');
+    background-position: center center;
+  }
+}
+
+/* Safe area for mobile bottom bar (Chrome, Safari) */
+.mobile-safe-bottom {
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
+}
+
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
