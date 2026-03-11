@@ -17,6 +17,7 @@ interface Participant {
   phone: string;
   store: string;
   invoice_url: string;
+  invoice_signed_url?: string | null;
   prize_type: string;
   created_at: string;
 }
@@ -249,13 +250,13 @@ function DetailModal({ participant, onClose }: DetailModalProps) {
           </div>
 
           {/* Invoice image */}
-          {participant.invoice_url && (
+          {participant.invoice_signed_url && (
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-wider text-white/40">Vista previa de factura</p>
               <div className="relative w-full bg-black/40 rounded-xl border border-white/10 overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={participant.invoice_url}
+                  src={participant.invoice_signed_url}
                   alt={`Factura de ${participant.full_name}`}
                   className="w-full max-h-80 object-contain"
                   onError={(e) => {
@@ -273,14 +274,13 @@ function DetailModal({ participant, onClose }: DetailModalProps) {
               </div>
 
               <a
-                href={participant.invoice_url}
+                href={participant.invoice_signed_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                download
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#D4A843]/10 border border-[#D4A843]/30 text-[#D4A843] text-sm font-medium hover:bg-[#D4A843]/20 transition-colors duration-150"
               >
                 <IconDownload />
-                Descargar Factura
+                Ver Factura
               </a>
             </div>
           )}
