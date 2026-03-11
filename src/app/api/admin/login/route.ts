@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 
@@ -46,8 +48,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const credentialsMatch =
       typeof username === 'string' &&
       typeof password === 'string' &&
-      username === adminUser &&
-      password === adminPassword;
+      username.trim() === adminUser.trim() &&
+      password.trim() === adminPassword.trim();
 
     if (!credentialsMatch) {
       return NextResponse.json(
