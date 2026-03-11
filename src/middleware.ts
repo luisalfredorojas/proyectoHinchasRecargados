@@ -50,10 +50,10 @@ export function middleware(request: NextRequest): NextResponse {
 export const config = {
   /**
    * Apply this middleware to:
-   *  - /admin and any /admin/** sub-paths (e.g. /admin/participants)
-   *  - /api/admin/** EXCEPT /api/admin/login
-   *    (the negative lookahead `(?!login)` excludes the login route so
-   *     unauthenticated POST requests can reach it)
+   *  - /admin and any /admin/** sub-paths
+   *  - /api/admin/participants and /api/admin/export (explicitly protected)
+   *  - /api/admin/login is intentionally excluded so unauthenticated
+   *    POST requests can reach the login handler
    */
-  matcher: ['/admin/:path*', '/api/admin/((?!login).*)'],
+  matcher: ['/admin/:path*', '/api/admin/participants', '/api/admin/export'],
 };
