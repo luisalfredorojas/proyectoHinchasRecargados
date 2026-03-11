@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { useForm, Resolver } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -58,6 +58,7 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
   const [invoiceError, setInvoiceError] = useState<string | undefined>(undefined);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const submittingRef = useRef(false);
 
   const {
     register,
@@ -134,12 +135,15 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
   // ─── Form submission ──────────────────────────────────────────────────────
 
   const onSubmit = useCallback(async () => {
+    if (submittingRef.current) return;
+
     if (!invoiceFile) {
       setInvoiceError('Por favor sube una foto de tu factura');
       setCurrentStep(5);
       return;
     }
 
+    submittingRef.current = true;
     setIsSubmitting(true);
     setSubmitError(null);
 
@@ -172,6 +176,7 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
         err instanceof Error ? err.message : 'Error inesperado. Intenta nuevamente.';
       setSubmitError(message);
     } finally {
+      submittingRef.current = false;
       setIsSubmitting(false);
     }
   }, [invoiceFile, getValues, onSuccess]);
