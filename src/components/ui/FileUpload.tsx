@@ -226,7 +226,6 @@ export function FileUpload({
         ref={inputRef}
         type="file"
         accept={accept}
-        capture="environment"
         className="sr-only"
         aria-hidden="true"
         tabIndex={-1}
