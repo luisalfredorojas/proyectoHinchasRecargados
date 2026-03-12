@@ -113,44 +113,48 @@ export function Modal({ isOpen, onClose, children, className = '' }: ModalProps)
             WebkitBackdropFilter: 'blur(4px)',
           }}
         >
+          {/* Copper gradient border wrapper */}
           <motion.div
-            ref={contentRef}
-            key="modal-content"
+            key="modal-border"
             variants={contentVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
             className={[
               'relative w-full max-w-md',
-              'bg-gradient-to-br from-[#1B6B8A] to-[#000000]',
-              'rounded-2xl p-6 shadow-2xl',
-              'border border-white/10',
-              'max-h-[90vh] overflow-y-auto',
+              'p-[2px] rounded-2xl',
+              'bg-gradient-to-br from-[#BE7753] to-[#F2B38C]',
+              'shadow-2xl shadow-[#BE7753]/20',
               className,
             ].join(' ')}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close button */}
-            <button
-              ref={closeButtonRef}
-              type="button"
-              onClick={onClose}
-              aria-label="Cerrar modal"
-              className={[
-                'absolute top-4 right-4',
-                'flex items-center justify-center',
-                'h-8 w-8 rounded-full',
-                'text-white/60 hover:text-white',
-                'bg-white/10 hover:bg-white/20',
-                'transition-all duration-150',
-                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BE7753]/60',
-              ].join(' ')}
+            <div
+              ref={contentRef}
+              className="relative bg-black rounded-2xl p-6 max-h-[90vh] overflow-y-auto"
             >
-              <CloseIcon />
-            </button>
+              {/* Close button */}
+              <button
+                ref={closeButtonRef}
+                type="button"
+                onClick={onClose}
+                aria-label="Cerrar modal"
+                className={[
+                  'absolute top-4 right-4',
+                  'flex items-center justify-center',
+                  'h-8 w-8 rounded-full',
+                  'text-white/60 hover:text-white',
+                  'bg-white/10 hover:bg-white/20',
+                  'transition-all duration-150',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BE7753]/60',
+                ].join(' ')}
+              >
+                <CloseIcon />
+              </button>
 
-            {/* Modal body */}
-            {children}
+              {/* Modal body */}
+              {children}
+            </div>
           </motion.div>
         </motion.div>
       )}
