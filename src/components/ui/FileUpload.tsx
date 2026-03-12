@@ -16,11 +16,11 @@ interface FileUploadProps {
   className?: string;
 }
 
-function CameraIcon() {
+function CameraIcon({ className }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-10 w-10 text-[#BE7753]/70"
+      className={className ?? 'h-5 w-5'}
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -36,6 +36,26 @@ function CameraIcon() {
         strokeLinecap="round"
         strokeLinejoin="round"
         d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+      />
+    </svg>
+  );
+}
+
+function GalleryIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={className ?? 'h-5 w-5'}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
       />
     </svg>
   );
@@ -69,7 +89,8 @@ export function FileUpload({
   accept = 'image/*',
   className = '',
 }: FileUploadProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
+  const galleryInputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [validationError, setValidationError] = useState<string | undefined>(undefined);
 
@@ -96,6 +117,8 @@ export function FileUpload({
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] ?? null;
     handleFileChange(file);
+    // Reset so the same file can be selected again
+    e.target.value = '';
   };
 
   const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -117,19 +140,9 @@ export function FileUpload({
     }
   };
 
-  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      inputRef.current?.click();
-    }
-  };
-
   const handleRemove = (e: React.MouseEvent) => {
     e.stopPropagation();
     onChange(null);
-    if (inputRef.current) {
-      inputRef.current.value = '';
-    }
   };
 
   const dropZoneId = label?.toLowerCase().replace(/\s+/g, '-') ?? 'file-upload';
@@ -147,48 +160,35 @@ export function FileUpload({
 
       <div
         id={dropZoneId}
-        role="button"
-        tabIndex={0}
-        aria-label="Tomar foto o seleccionar imagen"
-        aria-describedby={error ? `${dropZoneId}-error` : undefined}
-        onClick={() => inputRef.current?.click()}
-        onKeyDown={onKeyDown}
         onDragOver={onDragOver}
         onDragLeave={onDragLeave}
         onDrop={onDrop}
         className={[
           'relative flex flex-col items-center justify-center',
-          'min-h-[200px] rounded-2xl cursor-pointer',
+          'min-h-[200px] rounded-2xl',
           'border-2 border-dashed transition-all duration-200',
           'bg-white/5 overflow-hidden',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BE7753]/50',
           isDragging
             ? 'border-[#BE7753] bg-[#BE7753]/10 scale-[1.01]'
             : error
-              ? 'border-red-500/60 hover:border-red-500'
-              : 'border-[#BE7753]/40 hover:border-[#BE7753]/80 hover:bg-white/8',
+              ? 'border-red-500/60'
+              : 'border-[#BE7753]/40',
         ].join(' ')}
       >
         {preview ? (
           <>
-            {/* Preview image */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={preview}
               alt="Vista previa"
               className="absolute inset-0 w-full h-full object-cover"
             />
-
-            {/* Overlay with change button */}
             <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-200">
               <div className="flex flex-col items-center gap-2">
                 <UploadIcon />
                 <button
                   type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    inputRef.current?.click();
-                  }}
+                  onClick={() => galleryInputRef.current?.click()}
                   className="px-4 py-1.5 rounded-lg bg-gradient-to-r from-[#BE7753] to-[#F2B38C] text-black text-sm font-bold hover:brightness-110 transition-all duration-300"
                 >
                   Cambiar
@@ -204,26 +204,56 @@ export function FileUpload({
             </div>
           </>
         ) : (
-          <div className="flex flex-col items-center gap-3 p-6 text-center pointer-events-none select-none">
-            <CameraIcon />
-            <div className="flex flex-col gap-1">
+          <div className="flex flex-col items-center gap-4 p-6 text-center">
+            {/* Icon */}
+            <CameraIcon className="h-10 w-10 text-[#BE7753]/70" />
+
+            {/* Text */}
+            <div className="flex flex-col gap-1 pointer-events-none select-none">
               <p className="text-white/80 text-sm font-semibold">
-                Tomar foto o seleccionar imagen
-              </p>
-              <p className="text-white/40 text-xs">
-                {isDragging
-                  ? 'Suelta la imagen aqui'
-                  : 'Arrastra una imagen o toca para seleccionar'}
+                {isDragging ? 'Suelta la imagen aquí' : 'Sube tu factura'}
               </p>
               <p className="text-white/25 text-xs">JPG, PNG o WEBP · Máx. 10 MB</p>
+            </div>
+
+            {/* Action buttons */}
+            <div className="flex gap-3 mt-1">
+              <button
+                type="button"
+                onClick={() => cameraInputRef.current?.click()}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#BE7753] to-[#F2B38C] text-black text-sm font-bold hover:brightness-110 active:scale-95 transition-all duration-200"
+              >
+                <CameraIcon className="h-4 w-4" />
+                Cámara
+              </button>
+              <button
+                type="button"
+                onClick={() => galleryInputRef.current?.click()}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 border border-[#BE7753]/40 text-white text-sm font-semibold hover:bg-white/15 active:scale-95 transition-all duration-200"
+              >
+                <GalleryIcon className="h-4 w-4" />
+                Galería
+              </button>
             </div>
           </div>
         )}
       </div>
 
-      {/* Hidden file input */}
+      {/* Input para cámara (capture fuerza la cámara en mobile) */}
       <input
-        ref={inputRef}
+        ref={cameraInputRef}
+        type="file"
+        accept={accept}
+        capture="environment"
+        className="sr-only"
+        aria-hidden="true"
+        tabIndex={-1}
+        onChange={onInputChange}
+      />
+
+      {/* Input para galería (sin capture para abrir el selector de archivos) */}
+      <input
+        ref={galleryInputRef}
         type="file"
         accept={accept}
         className="sr-only"
