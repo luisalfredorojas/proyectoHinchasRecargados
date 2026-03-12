@@ -113,7 +113,7 @@ export function TermsModal({ isOpen, onClose }: TermsModalProps) {
                   className="text-base font-bold text-white leading-snug pr-8"
                 >
                   Términos y Condiciones de la Campaña
-                  <span className="block text-[#F2B38C]">"Hinchas Recargados Duracell"</span>
+                  <span className="block text-[#F2B38C]">&ldquo;Hinchas Recargados Duracell&rdquo;</span>
                 </h2>
                 <button
                   ref={closeButtonRef}
@@ -139,9 +139,9 @@ export function TermsModal({ isOpen, onClose }: TermsModalProps) {
                 <p>
                   El presente documento tiene por objeto determinar las bases y condiciones legales
                   aplicables a la campaña denominada{' '}
-                  <strong className="text-white">"MEGA PROMO"</strong> (en adelante "la Promoción")
+                  <strong className="text-white">&ldquo;MEGA PROMO&rdquo;</strong> (en adelante &ldquo;la Promoción&rdquo;)
                   que realiza la compañía <strong className="text-white">CALBAQ S.A.</strong> (en
-                  adelante "Promotora").
+                  adelante &ldquo;Promotora&rdquo;).
                 </p>
 
                 <section>
