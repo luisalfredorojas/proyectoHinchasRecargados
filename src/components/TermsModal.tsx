@@ -155,7 +155,7 @@ export function TermsModal({ isOpen, onClose }: TermsModalProps) {
                     </li>
                     <li>
                       <strong className="text-white/90">Establecimientos participantes:</strong> Los
-                      locales comerciales "Kywi" y "MegaKywi", en tiendas físicas y a través de
+                      locales comerciales &ldquo;Kywi&rdquo; y &ldquo;MegaKywi&rdquo;, en tiendas físicas y a través de
                       plataforma virtual, a nivel nacional.
                     </li>
                   </ul>
@@ -168,7 +168,7 @@ export function TermsModal({ isOpen, onClose }: TermsModalProps) {
                   <p>
                     Por la compra de pilas marca Duracell realizadas en Kywi o MegaKywi, los
                     clientes podrán participar en el sorteo de un{' '}
-                    <strong className="text-white">"Cine en Casa Duracell"</strong>, que incluye:
+                    <strong className="text-white">&ldquo;Cine en Casa Duracell&rdquo;</strong>, que incluye:
                   </p>
                   <ul className="mt-2 space-y-1 list-disc list-inside text-white/70">
                     <li>1 televisor de 55 pulgadas</li>
@@ -275,8 +275,8 @@ export function TermsModal({ isOpen, onClose }: TermsModalProps) {
                   <p>
                     Los presentes Términos y Condiciones se encuentran disponibles para su consulta
                     durante toda la vigencia de la campaña. Cualquier leyenda en la actividad que
-                    haga referencia a "consulte más información", "para más información" o "aplican
-                    términos y condiciones", se referirán a este documento.
+                    haga referencia a &ldquo;consulte más información&rdquo;, &ldquo;para más información&rdquo; o &ldquo;aplican
+                    términos y condiciones&rdquo;, se referirán a este documento.
                   </p>
                 </section>
 
