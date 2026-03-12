@@ -542,9 +542,13 @@ function AdminDashboard({ onLogout }: AdminDashboardProps) {
   };
 
   // ── Logout ──
-  const handleLogout = () => {
-    // Expire the auth cookie
-    document.cookie = 'admin_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  const handleLogout = async () => {
+    // Invalidate the cookie server-side so captured tokens cannot be reused
+    try {
+      await fetch('/api/admin/logout', { method: 'POST' });
+    } catch {
+      // Continue with local logout even if the request fails
+    }
     onLogout();
   };
 

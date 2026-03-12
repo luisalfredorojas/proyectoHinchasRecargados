@@ -43,11 +43,14 @@ function verifyAdminToken(token: string | undefined): boolean {
  */
 function escapeCsvCell(value: string): string {
   const stringValue = value ?? '';
-  // If the value contains a comma, double-quote, or newline it must be quoted
-  if (/[",\r\n]/.test(stringValue)) {
-    return `"${stringValue.replace(/"/g, '""')}"`;
+  // Neutralize CSV/formula injection: prefix dangerous leading characters
+  // that Excel and LibreOffice Calc interpret as formulas (DDE injection)
+  const sanitized = /^[=+\-@\t\r]/.test(stringValue) ? `'${stringValue}` : stringValue;
+  // Wrap in double-quotes if the value contains special CSV characters (RFC 4180)
+  if (/[",\r\n]/.test(sanitized)) {
+    return `"${sanitized.replace(/"/g, '""')}"`;
   }
-  return stringValue;
+  return sanitized;
 }
 
 /**

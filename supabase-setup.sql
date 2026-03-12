@@ -6,7 +6,7 @@
 CREATE TABLE IF NOT EXISTS participants (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   full_name TEXT NOT NULL CHECK (char_length(full_name) >= 3),
-  cedula TEXT NOT NULL CHECK (char_length(cedula) = 10 OR char_length(cedula) = 13),
+  cedula TEXT NOT NULL UNIQUE CHECK (char_length(cedula) = 10 OR char_length(cedula) = 13),
   phone TEXT NOT NULL CHECK (char_length(phone) = 10),
   store TEXT NOT NULL,
   invoice_url TEXT NOT NULL,
