@@ -27,6 +27,10 @@ export interface Participant {
   /** Public or signed URL to the invoice image in Supabase Storage */
   invoice_url: string;
   prize_type: PrizeType;
+  /** Whether the participant accepted T&C at submission time */
+  terms_accepted: boolean;
+  /** ISO 8601 timestamp when T&C were accepted */
+  terms_accepted_at: string | null;
   /** ISO 8601 timestamp (TIMESTAMPTZ) */
   created_at: string;
 }

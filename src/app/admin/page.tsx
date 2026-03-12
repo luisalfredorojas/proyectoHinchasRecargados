@@ -19,6 +19,8 @@ interface Participant {
   invoice_url: string;
   invoice_signed_url?: string | null;
   prize_type: string;
+  terms_accepted: boolean;
+  terms_accepted_at: string | null;
   created_at: string;
 }
 
@@ -198,6 +200,12 @@ function DetailModal({ participant, onClose }: DetailModalProps) {
     { label: 'Premio', value: PRIZE_LABELS[participant.prize_type] ?? participant.prize_type },
     { label: 'Fecha de registro', value: formatDate(participant.created_at) },
     { label: 'ID de registro', value: participant.id },
+    {
+      label: 'T&C aceptados',
+      value: participant.terms_accepted
+        ? `Sí${participant.terms_accepted_at ? ` — ${formatDate(participant.terms_accepted_at)}` : ''}`
+        : 'No',
+    },
   ];
 
   return (
@@ -712,6 +720,9 @@ function AdminDashboard({ onLogout }: AdminDashboardProps) {
                   <th scope="col" className="px-4 py-3 text-left text-[11px] uppercase tracking-wider text-white/40 font-semibold hidden xl:table-cell">
                     Premio
                   </th>
+                  <th scope="col" className="px-4 py-3 text-left text-[11px] uppercase tracking-wider text-white/40 font-semibold hidden xl:table-cell">
+                    T&C
+                  </th>
                   <th scope="col" className="px-4 py-3 text-left text-[11px] uppercase tracking-wider text-white/40 font-semibold hidden lg:table-cell">
                     Fecha
                   </th>
@@ -723,13 +734,13 @@ function AdminDashboard({ onLogout }: AdminDashboardProps) {
               <tbody>
                 {loading ? (
                   <tr>
-                    <td colSpan={8} className="py-0">
+                    <td colSpan={9} className="py-0">
                       <Spinner label="Cargando participantes..." />
                     </td>
                   </tr>
                 ) : participants.length === 0 ? (
                   <tr>
-                    <td colSpan={8}>
+                    <td colSpan={9}>
                       <div className="flex flex-col items-center justify-center py-20 gap-3 text-white/30">
                         <IconUsers />
                         <p className="text-sm">
@@ -788,6 +799,11 @@ function AdminDashboard({ onLogout }: AdminDashboardProps) {
                         <td className="px-4 py-3 hidden xl:table-cell">
                           <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${getPrizeBadgeColor(p.prize_type)}`}>
                             {PRIZE_LABELS[p.prize_type] ?? p.prize_type}
+                          </span>
+                        </td>
+                        <td className="px-4 py-3 hidden xl:table-cell">
+                          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${p.terms_accepted ? 'bg-[#2D8C3C]/30 text-[#5DC970] border-[#2D8C3C]/50' : 'bg-red-900/30 text-red-400 border-red-500/30'}`}>
+                            {p.terms_accepted ? 'Sí' : 'No'}
                           </span>
                         </td>
                         <td className="px-4 py-3 text-white/40 text-xs tabular-nums hidden lg:table-cell whitespace-nowrap">

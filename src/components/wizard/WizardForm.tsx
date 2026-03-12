@@ -155,6 +155,8 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
       payload.append('phone', values.phone);
       payload.append('store', values.store);
       payload.append('invoice', invoiceFile);
+      payload.append('terms_accepted', 'true');
+      payload.append('terms_accepted_at', new Date().toISOString());
 
       const response = await fetch('/api/register', {
         method: 'POST',

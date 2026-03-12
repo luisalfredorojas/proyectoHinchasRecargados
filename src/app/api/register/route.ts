@@ -31,6 +31,19 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const phone = formData.get('phone') as string | null;
     const store = formData.get('store') as string | null;
     const invoice = formData.get('invoice') as File | null;
+    const terms_accepted_raw = formData.get('terms_accepted') as string | null;
+    const terms_accepted_at_raw = formData.get('terms_accepted_at') as string | null;
+
+    // T&C must be explicitly accepted before submitting
+    if (terms_accepted_raw !== 'true') {
+      return NextResponse.json(
+        { success: false, error: 'Debes aceptar los términos y condiciones para participar.' },
+        { status: 422 },
+      );
+    }
+
+    const terms_accepted = true;
+    const terms_accepted_at = terms_accepted_at_raw ?? new Date().toISOString();
 
     // ── 2. Validate text fields with Zod schema ──────────────────────────────
     let validated: { full_name: string; cedula: string; phone: string; store: Store };
@@ -107,6 +120,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       store: validated.store,
       invoice_url: fileName,
       prize_type,
+      terms_accepted,
+      terms_accepted_at,
     });
 
     if (dbError) {
