@@ -221,7 +221,7 @@ export function FileUpload({
               <button
                 type="button"
                 onClick={() => cameraInputRef.current?.click()}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#BE7753] to-[#F2B38C] text-black text-sm font-bold hover:brightness-110 active:scale-95 transition-all duration-200"
+                className="md:hidden flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#BE7753] to-[#F2B38C] text-black text-sm font-bold hover:brightness-110 active:scale-95 transition-all duration-200"
               >
                 <CameraIcon className="h-4 w-4" />
                 Cámara
@@ -229,7 +229,7 @@ export function FileUpload({
               <button
                 type="button"
                 onClick={() => galleryInputRef.current?.click()}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 border border-[#BE7753]/40 text-white text-sm font-semibold hover:bg-white/15 active:scale-95 transition-all duration-200"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#BE7753] to-[#F2B38C] text-black text-sm font-bold hover:brightness-110 active:scale-95 md:inline-flex transition-all duration-200"
               >
                 <GalleryIcon className="h-4 w-4" />
                 Galería
