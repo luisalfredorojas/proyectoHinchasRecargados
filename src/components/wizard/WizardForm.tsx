@@ -170,18 +170,30 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
       });
 
       if (!response.ok) {
+        if (response.status === 413) {
+          throw new Error('La imagen es demasiado grande para enviarla. Usa una foto de menor resolución (máx. 10 MB).');
+        }
         const errorData = (await response.json().catch(() => ({}))) as {
           error?: string;
         };
-        throw new Error(errorData.error ?? 'Error al registrar. Intenta nuevamente.');
+        const fallback =
+          response.status >= 500
+            ? 'Error en el servidor. Intenta nuevamente en unos minutos.'
+            : 'Error al registrar. Verifica los datos e intenta de nuevo.';
+        throw new Error(errorData.error ?? fallback);
       }
 
       const result = (await response.json()) as { prize_type?: string };
       const prizeType = result.prize_type ?? 'cine_en_casa';
       onSuccess(prizeType);
     } catch (err) {
-      const message =
-        err instanceof Error ? err.message : 'Error inesperado. Intenta nuevamente.';
+      let message = 'Error inesperado. Intenta nuevamente.';
+      if (err instanceof Error) {
+        message =
+          err.message === 'Failed to fetch'
+            ? 'No se pudo conectar al servidor. Verifica tu conexión a internet e intenta de nuevo.'
+            : err.message;
+      }
       setSubmitError(message);
     } finally {
       submittingRef.current = false;

@@ -103,7 +103,8 @@ export function FileUpload({
           return;
         }
         if (file.size > MAX_FILE_SIZE_BYTES) {
-          setValidationError('La imagen no puede superar los 10 MB.');
+          const sizeMB = (file.size / 1024 / 1024).toFixed(1);
+          setValidationError(`La imagen pesa ${sizeMB} MB. El límite es 10 MB. Comprime la foto o elige una de menor resolución.`);
           onChange(null);
           return;
         }
