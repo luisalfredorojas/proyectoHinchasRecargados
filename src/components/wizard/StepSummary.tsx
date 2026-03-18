@@ -18,6 +18,7 @@ interface StepSummaryProps {
   formData: SummaryData;
   onEdit: (step: number) => void;
   isSubmitting: boolean;
+  onTermsAccepted: (terms: boolean, dataConsent: boolean) => void;
 }
 
 interface SummaryRowProps {
@@ -42,6 +43,21 @@ function PencilIcon() {
     >
       <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
       <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg
+      className="w-3 h-3 text-black"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={3}
+      aria-hidden="true"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
   );
 }
@@ -71,16 +87,37 @@ function SummaryRow({ label, value, step, onEdit }: SummaryRowProps) {
   );
 }
 
-export function StepSummary({ formData, onEdit, isSubmitting }: StepSummaryProps) {
+export function StepSummary({ formData, onEdit, isSubmitting, onTermsAccepted }: StepSummaryProps) {
   const { full_name, cedula, phone, store, invoicePreview } = formData;
   const [showTerms, setShowTerms] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [dataConsent, setDataConsent] = useState(false);
+  const [showValidationError, setShowValidationError] = useState(false);
 
   const rows: { label: string; value: string; step: number }[] = [
     { label: 'Nombre', value: full_name, step: 1 },
-    { label: 'Cédula', value: cedula, step: 2 },
+    { label: 'Cedula', value: cedula, step: 2 },
     { label: 'Celular', value: `+593 ${phone}`, step: 3 },
     { label: 'Local', value: store, step: 4 },
   ];
+
+  const handleTermsChange = (checked: boolean) => {
+    setTermsAccepted(checked);
+    setShowValidationError(false);
+    onTermsAccepted(checked, dataConsent);
+  };
+
+  const handleDataConsentChange = (checked: boolean) => {
+    setDataConsent(checked);
+    setShowValidationError(false);
+    onTermsAccepted(termsAccepted, checked);
+  };
+
+  const handleSubmitAttempt = () => {
+    if (!termsAccepted || !dataConsent) {
+      setShowValidationError(true);
+    }
+  };
 
   return (
     <>
@@ -97,7 +134,7 @@ export function StepSummary({ formData, onEdit, isSubmitting }: StepSummaryProps
             Revisa tus datos
           </h2>
           <p className="text-sm text-white/60">
-            Confirma que todo está correcto antes de enviar.
+            Confirma que todo esta correcto antes de enviar.
           </p>
         </div>
 
@@ -148,31 +185,92 @@ export function StepSummary({ formData, onEdit, isSubmitting }: StepSummaryProps
           </div>
         </div>
 
-        {/* Terms & Conditions notice */}
-        <p className="text-xs text-white/50 text-center leading-relaxed px-1">
-          Al hacer clic en <strong className="text-white/70">Enviar</strong>, aceptas los
-          términos y condiciones del concurso.{' '}
-          <button
-            type="button"
-            onClick={() => setShowTerms(true)}
-            className="text-[#F2B38C] underline underline-offset-2 hover:text-[#BE7753] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#BE7753] rounded"
-          >
-            Haz clic aquí para leerlos
-          </button>
-          .
-        </p>
+        {/* ── Mandatory checkboxes ── */}
+        <div className="space-y-3">
+          {/* Checkbox 1: Terms & Conditions */}
+          <label className="flex items-start gap-3 cursor-pointer group">
+            <div className="relative mt-0.5 shrink-0">
+              <input
+                type="checkbox"
+                className="sr-only peer"
+                checked={termsAccepted}
+                onChange={(e) => handleTermsChange(e.target.checked)}
+              />
+              <div
+                className={[
+                  'w-5 h-5 rounded border-2 transition-all duration-200 flex items-center justify-center',
+                  termsAccepted
+                    ? 'border-[#BE7753] bg-[#BE7753]'
+                    : showValidationError
+                    ? 'border-red-500/70 bg-transparent'
+                    : 'border-white/30 bg-transparent',
+                ].join(' ')}
+              >
+                {termsAccepted && <CheckIcon />}
+              </div>
+            </div>
+            <span className="text-xs text-white/60 leading-relaxed">
+              Acepto los{' '}
+              <button
+                type="button"
+                onClick={() => setShowTerms(true)}
+                className="text-[#F2B38C] underline underline-offset-2 hover:text-[#BE7753] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#BE7753] rounded"
+              >
+                terminos y condiciones
+              </button>{' '}
+              del concurso.
+            </span>
+          </label>
+
+          {/* Checkbox 2: Data consent */}
+          <label className="flex items-start gap-3 cursor-pointer group">
+            <div className="relative mt-0.5 shrink-0">
+              <input
+                type="checkbox"
+                className="sr-only peer"
+                checked={dataConsent}
+                onChange={(e) => handleDataConsentChange(e.target.checked)}
+              />
+              <div
+                className={[
+                  'w-5 h-5 rounded border-2 transition-all duration-200 flex items-center justify-center',
+                  dataConsent
+                    ? 'border-[#BE7753] bg-[#BE7753]'
+                    : showValidationError
+                    ? 'border-red-500/70 bg-transparent'
+                    : 'border-white/30 bg-transparent',
+                ].join(' ')}
+              >
+                {dataConsent && <CheckIcon />}
+              </div>
+            </div>
+            <span className="text-xs text-white/60 leading-relaxed">
+              Autorizo el tratamiento de mis datos personales.
+            </span>
+          </label>
+
+          {/* Validation error message */}
+          {showValidationError && (
+            <p className="text-xs text-red-400 leading-snug pl-8">
+              Debes aceptar ambas opciones para continuar.
+            </p>
+          )}
+        </div>
 
         {/* Submit button */}
-        <Button
-          type="submit"
-          variant="primary"
-          size="lg"
-          loading={isSubmitting}
-          loadingText="Enviando..."
-          className="mt-2"
-        >
-          Enviar
-        </Button>
+        <div onClick={!termsAccepted || !dataConsent ? handleSubmitAttempt : undefined}>
+          <Button
+            type="submit"
+            variant="primary"
+            size="lg"
+            loading={isSubmitting}
+            loadingText="Enviando..."
+            className="mt-2"
+            disabled={isSubmitting || !termsAccepted || !dataConsent}
+          >
+            Enviar
+          </Button>
+        </div>
       </motion.div>
 
       {/* Terms modal — rendered outside the motion.div to avoid stacking context issues */}

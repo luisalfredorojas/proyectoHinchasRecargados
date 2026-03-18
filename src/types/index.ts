@@ -31,6 +31,10 @@ export interface Participant {
   terms_accepted: boolean;
   /** ISO 8601 timestamp when T&C were accepted */
   terms_accepted_at: string | null;
+  /** Whether the participant authorised personal data treatment */
+  data_treatment_accepted: boolean;
+  /** ISO 8601 timestamp when personal data treatment consent was given */
+  data_treatment_accepted_at: string | null;
   /** ISO 8601 timestamp (TIMESTAMPTZ) */
   created_at: string;
 }

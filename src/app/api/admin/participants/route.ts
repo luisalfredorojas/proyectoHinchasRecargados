@@ -90,7 +90,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     // Data query with pagination
     let dataQuery = supabase
       .from('participants')
-      .select('id, full_name, cedula, phone, store, invoice_url, prize_type, terms_accepted, terms_accepted_at, created_at')
+      .select('id, full_name, cedula, phone, store, invoice_url, prize_type, terms_accepted, terms_accepted_at, data_treatment_accepted, data_treatment_accepted_at, created_at')
       .order('created_at', { ascending: false })
       .range((page - 1) * limit, page * limit - 1);
 

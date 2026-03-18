@@ -58,6 +58,8 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
   const [invoiceError, setInvoiceError] = useState<string | undefined>(undefined);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [dataConsent, setDataConsent] = useState(false);
   const submittingRef = useRef(false);
 
   const {
@@ -155,8 +157,12 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
       payload.append('phone', values.phone);
       payload.append('store', values.store);
       payload.append('invoice', invoiceFile);
-      payload.append('terms_accepted', 'true');
+      payload.append('terms_accepted', termsAccepted.toString());
       payload.append('terms_accepted_at', new Date().toISOString());
+      payload.append('data_treatment_accepted', dataConsent.toString());
+      if (dataConsent) {
+        payload.append('data_treatment_accepted_at', new Date().toISOString());
+      }
 
       const response = await fetch('/api/register', {
         method: 'POST',
@@ -181,7 +187,7 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
       submittingRef.current = false;
       setIsSubmitting(false);
     }
-  }, [invoiceFile, getValues, onSuccess]);
+  }, [invoiceFile, getValues, onSuccess, termsAccepted, dataConsent]);
 
   // ─── Derived state for StepSummary ────────────────────────────────────────
 
@@ -287,6 +293,10 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
               formData={summaryData}
               onEdit={goToStep}
               isSubmitting={isSubmitting}
+              onTermsAccepted={(terms, consent) => {
+                setTermsAccepted(terms);
+                setDataConsent(consent);
+              }}
             />
           </motion.div>
         );

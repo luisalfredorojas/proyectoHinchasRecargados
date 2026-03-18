@@ -1,19 +1,5 @@
 import type { Metadata } from 'next';
-import { Bebas_Neue, Inter } from 'next/font/google';
 import './globals.css';
-
-const bebasNeue = Bebas_Neue({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-bebas',
-  display: 'swap',
-});
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-sans',
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: 'Hinchas Recargados | Duracell Ecuador',
@@ -45,8 +31,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${bebasNeue.variable} ${inter.variable}`}>
-      <body className="antialiased min-h-screen bg-black text-white font-[family-name:var(--font-sans)]">
+    <html lang="es">
+      <body className="antialiased min-h-screen bg-black text-white">
         {children}
       </body>
     </html>

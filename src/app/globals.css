@@ -2,12 +2,128 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Karbon custom font ─────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'Karbon';
+  src: url('/fonts/karbon/TestKarbon-Hairline-BF663c30025849b.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karbon';
+  src: url('/fonts/karbon/TestKarbon-HairlineItalic-BF663c30024e597.otf') format('opentype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karbon';
+  src: url('/fonts/karbon/TestKarbon-Thin-BF663c3002626e3.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karbon';
+  src: url('/fonts/karbon/TestKarbon-ThinItalic-BF663c30024ecf9.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karbon';
+  src: url('/fonts/karbon/TestKarbon-Light-BF663c30025ea6f.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karbon';
+  src: url('/fonts/karbon/TestKarbon-LightItalic-BF663c3001e362d.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karbon';
+  src: url('/fonts/karbon/TestKarbon-Regular-BF663c30024c0cb.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karbon';
+  src: url('/fonts/karbon/TestKarbon-RegularItalic-BF663c30026295f.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karbon';
+  src: url('/fonts/karbon/TestKarbon-Medium-BF663c30022515d.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karbon';
+  src: url('/fonts/karbon/TestKarbon-MediumItalic-BF663c3002558c0.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karbon';
+  src: url('/fonts/karbon/TestKarbon-Semibold-BF663c300232dce.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karbon';
+  src: url('/fonts/karbon/TestKarbon-SemiboldItalic-BF663c3002447b3.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karbon';
+  src: url('/fonts/karbon/TestKarbon-Bold-BF663c30016e625.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karbon';
+  src: url('/fonts/karbon/TestKarbon-BoldItalic-BF663c30020b70c.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ── Design tokens ──────────────────────────────────────────────────────────── */
+
 :root {
   --duracell-gold: #D4A843;
   --duracell-green: #2D8C3C;
   --duracell-blue: #1B6B8A;
   --duracell-black: #000000;
-  --font-sans: 'Inter', Arial, Helvetica, sans-serif;
+  --font-sans: 'Karbon', Arial, Helvetica, sans-serif;
   --brand-primary: #BE7753;
   --brand-secondary: #F2B38C;
 }

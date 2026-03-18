@@ -23,8 +23,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["var(--font-display)", "sans-serif"],
-        sans: ["var(--font-sans)", "sans-serif"],
+        karbon: ["'Karbon'", "Arial", "Helvetica", "sans-serif"],
+        display: ["'Karbon'", "Arial", "Helvetica", "sans-serif"],
+        sans: ["'Karbon'", "Arial", "Helvetica", "sans-serif"],
       },
       animation: {
         "glow-pulse": "glow-pulse 2s ease-in-out infinite",

@@ -33,6 +33,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const invoice = formData.get('invoice') as File | null;
     const terms_accepted_raw = formData.get('terms_accepted') as string | null;
     const terms_accepted_at_raw = formData.get('terms_accepted_at') as string | null;
+    const data_treatment_accepted_raw = formData.get('data_treatment_accepted') as string | null;
+    const data_treatment_accepted_at_raw = formData.get('data_treatment_accepted_at') as string | null;
 
     // T&C must be explicitly accepted before submitting
     if (terms_accepted_raw !== 'true') {
@@ -42,8 +44,18 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       );
     }
 
+    // Personal data treatment consent is required
+    if (data_treatment_accepted_raw !== 'true') {
+      return NextResponse.json(
+        { success: false, error: 'Debes autorizar el tratamiento de datos personales.' },
+        { status: 400 },
+      );
+    }
+
     const terms_accepted = true;
     const terms_accepted_at = terms_accepted_at_raw ?? new Date().toISOString();
+    const data_treatment_accepted = true;
+    const data_treatment_accepted_at = data_treatment_accepted_at_raw ?? new Date().toISOString();
 
     // ── 2. Validate text fields with Zod schema ──────────────────────────────
     let validated: { full_name: string; cedula: string; phone: string; store: Store };
@@ -122,6 +134,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       prize_type,
       terms_accepted,
       terms_accepted_at,
+      data_treatment_accepted,
+      data_treatment_accepted_at,
     });
 
     if (dbError) {
