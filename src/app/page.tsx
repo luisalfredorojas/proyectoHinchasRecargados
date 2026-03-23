@@ -12,22 +12,22 @@ function LandingScreen({ onParticipate }: { onParticipate: () => void }) {
     <>
       {/* ── MOBILE landing ── */}
       <section className="lg:hidden min-h-screen flex flex-col justify-end bg-black bg-[url('/images/bg-mobile.png')] bg-[length:100%_auto] bg-top bg-no-repeat">
-        <div className="bg-gradient-to-t from-black via-black/90 to-transparent px-6 pt-16 mobile-safe-bottom text-center">
+        <div className="bg-gradient-to-t from-black via-black/90 to-transparent px-6 pt-8 mobile-safe-bottom text-center">
           {/* Main heading */}
-          <h1 className="font-bold text-white uppercase leading-none tracking-wide mb-1" style={{ fontSize: '3rem' }}>
+          <h1 className="font-bold text-white uppercase leading-none tracking-wide" style={{ fontSize: '2.2rem' }}>
             COMPRA PILAS
           </h1>
-          <h1 className="font-bold text-white uppercase leading-none tracking-wide mb-3" style={{ fontSize: '3rem' }}>
+          <h1 className="font-bold text-white uppercase leading-none tracking-wide mb-2" style={{ fontSize: '2.2rem' }}>
             DURACELL
           </h1>
 
           {/* Sub-heading in brand copper */}
-          <p className="text-2xl font-bold uppercase leading-tight mb-2" style={{ color: '#BE7753' }}>
+          <p className="text-lg font-bold uppercase leading-tight mb-1" style={{ color: '#BE7753' }}>
             INGRESA TUS FACTURAS
           </p>
 
           {/* Tagline */}
-          <p className="font-bold text-white uppercase leading-none tracking-wide mb-8" style={{ fontSize: '2.5rem' }}>
+          <p className="font-bold text-white uppercase leading-none tracking-wide mb-5" style={{ fontSize: '1.8rem' }}>
             Y PARTICIPA POR INCREIBLES PREMIOS
           </p>
 
