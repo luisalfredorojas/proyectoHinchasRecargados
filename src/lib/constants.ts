@@ -8,8 +8,6 @@ import type { Store, StoreCategory, PrizeType } from '@/types';
  */
 export const STORES: Store[] = [
   'Coral Hipermercados',
-  'Mi Comisariato/Hipermarket',
-  'Ferrisariato',
   'Fybeca',
   'Pharmacys',
   'Kywi',
@@ -25,8 +23,6 @@ export const STORES: Store[] = [
  */
 export const STORE_CATEGORY_MAP: Record<Store, StoreCategory> = {
   'Coral Hipermercados': 'autoservicio',
-  'Mi Comisariato/Hipermarket': 'autoservicio',
-  Ferrisariato: 'autoservicio',
   Fybeca: 'farmacia',
   Pharmacys: 'farmacia',
   Kywi: 'autoservicio',
@@ -83,3 +79,59 @@ export function getPrizeType(store: Store): PrizeType {
 export function getPrizeMessage(prizeType: PrizeType): string {
   return PRIZE_MESSAGES[prizeType];
 }
+
+// ─── Ecuador geography ────────────────────────────────────────────────────────
+
+export const ECUADOR_PROVINCES: string[] = [
+  'Azuay',
+  'Bolívar',
+  'Cañar',
+  'Carchi',
+  'Chimborazo',
+  'Cotopaxi',
+  'El Oro',
+  'Esmeraldas',
+  'Galápagos',
+  'Guayas',
+  'Imbabura',
+  'Loja',
+  'Los Ríos',
+  'Manabí',
+  'Morona Santiago',
+  'Napo',
+  'Orellana',
+  'Pastaza',
+  'Pichincha',
+  'Santa Elena',
+  'Santo Domingo de los Tsáchilas',
+  'Sucumbíos',
+  'Tungurahua',
+  'Zamora-Chinchipe',
+];
+
+export const PROVINCE_CITIES: Record<string, string[]> = {
+  'Azuay': ['Cuenca', 'Gualaceo', 'Paute', 'Santa Isabel', 'Sigsig', 'Girón', 'Chordeleg', 'Nabón', 'Oña', 'Pucará', 'San Fernando', 'Sevilla de Oro', 'Guachapala', 'El Pan', 'Camilo Ponce Enríquez'],
+  'Bolívar': ['Guaranda', 'Caluma', 'Chillanes', 'Chimbo', 'Echeandía', 'Las Naves', 'San Miguel'],
+  'Cañar': ['Azogues', 'Biblián', 'Cañar', 'La Troncal', 'El Tambo', 'Déleg', 'Suscal'],
+  'Carchi': ['Tulcán', 'Bolívar', 'Espejo', 'Mira', 'Montúfar', 'San Pedro de Huaca'],
+  'Chimborazo': ['Riobamba', 'Alausí', 'Chambo', 'Chunchi', 'Colta', 'Cumandá', 'Guamote', 'Guano', 'Pallatanga', 'Penipe'],
+  'Cotopaxi': ['Latacunga', 'La Maná', 'Pangua', 'Pujilí', 'Salcedo', 'Saquisilí', 'Sigchos'],
+  'El Oro': ['Machala', 'Arenillas', 'Atahualpa', 'Balsas', 'Chilla', 'El Guabo', 'Huaquillas', 'Las Lajas', 'Marcabelí', 'Pasaje', 'Piñas', 'Portovelo', 'Santa Rosa', 'Zaruma'],
+  'Esmeraldas': ['Esmeraldas', 'Atacames', 'Eloy Alfaro', 'Muisne', 'Quinindé', 'Rioverde', 'San Lorenzo'],
+  'Galápagos': ['Puerto Baquerizo Moreno', 'Puerto Ayora', 'Puerto Villamil'],
+  'Guayas': ['Guayaquil', 'Alfredo Baquerizo Moreno', 'Balao', 'Balzar', 'Colimes', 'Daule', 'Durán', 'El Empalme', 'El Triunfo', 'General Antonio Elizalde', 'Isidro Ayora', 'Lomas de Sargentillo', 'Marcelino Maridueña', 'Milagro', 'Naranjal', 'Naranjito', 'Nobol', 'Palestina', 'Pedro Carbo', 'Playas', 'Salitre', 'Samborondón', 'Santa Lucía', 'Simón Bolívar', 'Yaguachi'],
+  'Imbabura': ['Ibarra', 'Antonio Ante', 'Cotacachi', 'Otavalo', 'Pimampiro', 'San Miguel de Urcuquí'],
+  'Loja': ['Loja', 'Calvas', 'Catamayo', 'Celica', 'Chaguarpamba', 'Espíndola', 'Gonzanamá', 'Macará', 'Olmedo', 'Paltas', 'Pindal', 'Puyango', 'Quilanga', 'Saraguro', 'Sozoranga', 'Zapotillo'],
+  'Los Ríos': ['Babahoyo', 'Baba', 'Buena Fe', 'Mocache', 'Montalvo', 'Palenque', 'Puebloviejo', 'Quevedo', 'Quinsaloma', 'Urdaneta', 'Valencia', 'Ventanas', 'Vinces'],
+  'Manabí': ['Portoviejo', 'Bolívar', 'Chone', 'El Carmen', 'Flavio Alfaro', 'Jama', 'Jaramijó', 'Jipijapa', 'Junín', 'Manta', 'Montecristi', 'Olmedo', 'Paján', 'Pedernales', 'Pichincha', 'Puerto López', 'Rocafuerte', 'San Vicente', 'Santa Ana', 'Sucre', 'Tosagua', '24 de Mayo'],
+  'Morona Santiago': ['Macas', 'Gualaquiza', 'Huamboya', 'Limón Indanza', 'Logroño', 'Morona', 'Pablo Sexto', 'Palora', 'San Juan Bosco', 'Santiago', 'Sucúa', 'Taisha', 'Tiwintza'],
+  'Napo': ['Tena', 'Archidona', 'Carlos Julio Arosemena Tola', 'El Chaco', 'Quijos'],
+  'Orellana': ['Francisco de Orellana', 'Aguarico', 'La Joya de los Sachas', 'Loreto'],
+  'Pastaza': ['Puyo', 'Arajuno', 'Mera', 'Santa Clara'],
+  'Pichincha': ['Quito', 'Cayambe', 'Mejía', 'Pedro Moncayo', 'Pedro Vicente Maldonado', 'Puerto Quito', 'Rumiñahui', 'San Miguel de los Bancos'],
+  'Santa Elena': ['Santa Elena', 'La Libertad', 'Salinas'],
+  'Santo Domingo de los Tsáchilas': ['Santo Domingo', 'La Concordia'],
+  'Sucumbíos': ['Nueva Loja', 'Cascales', 'Cuyabeno', 'Gonzalo Pizarro', 'Lago Agrio', 'Putumayo', 'Shushufindi', 'Sucumbíos'],
+  'Tungurahua': ['Ambato', 'Baños de Agua Santa', 'Cevallos', 'Mocha', 'Patate', 'Pelileo', 'Píllaro', 'Quero', 'Tisaleo'],
+  'Zamora-Chinchipe': ['Zamora', 'Centinela del Cóndor', 'Chinchipe', 'El Pangui', 'Nangaritza', 'Palanda', 'Paquisha', 'Yacuambi', 'Yantzaza'],
+};

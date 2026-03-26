@@ -2,8 +2,6 @@
 
 export type Store =
   | 'Coral Hipermercados'
-  | 'Mi Comisariato/Hipermarket'
-  | 'Ferrisariato'
   | 'Fybeca'
   | 'Pharmacys'
   | 'Kywi'
@@ -24,6 +22,8 @@ export interface Participant {
   cedula: string;
   phone: string;
   store: Store;
+  province: string;
+  city: string;
   /** Public or signed URL to the invoice image in Supabase Storage */
   invoice_url: string;
   prize_type: PrizeType;
@@ -46,6 +46,8 @@ export interface FormData {
   cedula: string;
   phone: string;
   store: Store | '';
+  province: string;
+  city: string;
   /** Null until the user selects a file */
   invoice: File | null;
 }

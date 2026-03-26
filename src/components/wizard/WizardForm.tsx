@@ -27,7 +27,7 @@ const STEP_FIELDS: Record<number, (keyof Omit<FormData, 'invoice'>)[]> = {
   1: ['full_name'],
   2: ['cedula'],
   3: ['phone'],
-  4: ['store'],
+  4: ['province', 'city', 'store'],
 };
 
 // Slide animation variants — direction drives enter/exit side
@@ -67,6 +67,8 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
     trigger,
     getValues,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(registerSchema) as unknown as Resolver<FormData>,
@@ -76,6 +78,8 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
       cedula: '',
       phone: '',
       store: '',
+      province: '',
+      city: '',
       invoice: null,
     },
   });
@@ -156,6 +160,8 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
       payload.append('cedula', values.cedula);
       payload.append('phone', values.phone);
       payload.append('store', values.store);
+      payload.append('province', values.province);
+      payload.append('city', values.city);
       payload.append('invoice', invoiceFile);
       payload.append('terms_accepted', termsAccepted.toString());
       payload.append('terms_accepted_at', new Date().toISOString());
@@ -209,6 +215,8 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
     cedula: values.cedula,
     phone: values.phone,
     store: values.store,
+    province: values.province,
+    city: values.city,
     invoicePreview,
   };
 
@@ -269,7 +277,12 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
             exit="exit"
             transition={slideTransition}
           >
-            <StepStore register={register} error={errors.store} />
+            <StepStore
+                register={register}
+                errors={{ store: errors.store, province: errors.province, city: errors.city }}
+                watch={watch}
+                setValue={setValue}
+              />
           </motion.div>
         );
       case 5:
@@ -332,7 +345,7 @@ export function WizardForm({ onSuccess }: WizardFormProps) {
         <ProgressBar currentStep={currentStep} totalSteps={6} />
 
         {/* Step content with animated transitions */}
-        <div className="relative overflow-hidden min-h-[220px]">
+        <div className={`relative overflow-hidden ${currentStep === 4 ? 'min-h-[380px]' : 'min-h-[220px]'}`}>
           <AnimatePresence mode="wait" custom={direction}>
             {renderStep()}
           </AnimatePresence>

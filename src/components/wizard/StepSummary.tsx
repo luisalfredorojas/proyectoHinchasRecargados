@@ -11,6 +11,8 @@ interface SummaryData {
   cedula: string;
   phone: string;
   store: string;
+  province: string;
+  city: string;
   invoicePreview: string | null;
 }
 
@@ -88,7 +90,7 @@ function SummaryRow({ label, value, step, onEdit }: SummaryRowProps) {
 }
 
 export function StepSummary({ formData, onEdit, isSubmitting, onTermsAccepted }: StepSummaryProps) {
-  const { full_name, cedula, phone, store, invoicePreview } = formData;
+  const { full_name, cedula, phone, store, province, city, invoicePreview } = formData;
   const [showTerms, setShowTerms] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [dataConsent, setDataConsent] = useState(false);
@@ -98,6 +100,8 @@ export function StepSummary({ formData, onEdit, isSubmitting, onTermsAccepted }:
     { label: 'Nombre', value: full_name, step: 1 },
     { label: 'Cedula', value: cedula, step: 2 },
     { label: 'Celular', value: `+593 ${phone}`, step: 3 },
+    { label: 'Provincia', value: province, step: 4 },
+    { label: 'Ciudad', value: city, step: 4 },
     { label: 'Local', value: store, step: 4 },
   ];
 

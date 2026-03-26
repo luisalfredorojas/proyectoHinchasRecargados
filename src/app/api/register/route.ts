@@ -30,6 +30,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const cedula = formData.get('cedula') as string | null;
     const phone = formData.get('phone') as string | null;
     const store = formData.get('store') as string | null;
+    const province = formData.get('province') as string | null;
+    const city = formData.get('city') as string | null;
     const invoice = formData.get('invoice') as File | null;
     const terms_accepted_raw = formData.get('terms_accepted') as string | null;
     const terms_accepted_at_raw = formData.get('terms_accepted_at') as string | null;
@@ -58,13 +60,15 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const data_treatment_accepted_at = data_treatment_accepted_at_raw ?? new Date().toISOString();
 
     // ── 2. Validate text fields with Zod schema ──────────────────────────────
-    let validated: { full_name: string; cedula: string; phone: string; store: Store };
+    let validated: { full_name: string; cedula: string; phone: string; store: Store; province: string; city: string };
     try {
-      validated = registerSchema.parse({ full_name, cedula, phone, store }) as {
+      validated = registerSchema.parse({ full_name, cedula, phone, store, province, city }) as {
         full_name: string;
         cedula: string;
         phone: string;
         store: Store;
+        province: string;
+        city: string;
       };
     } catch (err) {
       if (err instanceof ZodError) {
@@ -130,6 +134,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       cedula: validated.cedula,
       phone: validated.phone,
       store: validated.store,
+      province: validated.province,
+      city: validated.city,
       invoice_url: fileName,
       prize_type,
       terms_accepted,

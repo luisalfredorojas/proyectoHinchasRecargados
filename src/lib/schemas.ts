@@ -4,13 +4,13 @@ import { z } from 'zod';
 
 export const storeEnum = z.enum([
   'Coral Hipermercados',
-  'Mi Comisariato/Hipermarket',
-  'Ferrisariato',
   'Fybeca',
   'Pharmacys',
   'Kywi',
   'Promart',
-]);
+], {
+  error: 'Selecciona el local donde realizaste tu compra',
+});
 
 // ─── Registration schema (shared between frontend and API route) ──────────────
 
@@ -48,11 +48,23 @@ export const registerSchema = z.object({
     }),
 
   /**
-   * Purchase store: must be one of the seven valid options.
+   * Purchase store: must be one of the five valid options.
    */
-  store: storeEnum.refine((val) => val !== undefined, {
-    message: 'Selecciona el local donde realizaste tu compra',
-  }),
+  store: storeEnum,
+
+  /**
+   * Ecuadorian province where the purchase was made.
+   */
+  province: z
+    .string()
+    .min(1, { message: 'Selecciona tu provincia' }),
+
+  /**
+   * City within the selected province.
+   */
+  city: z
+    .string()
+    .min(1, { message: 'Selecciona tu ciudad' }),
 });
 
 // ─── Inferred types ───────────────────────────────────────────────────────────
