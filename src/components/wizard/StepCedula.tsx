@@ -22,7 +22,7 @@ export function StepCedula({ register, error }: StepCedulaProps) {
     >
       <div className="text-center space-y-1">
         <h2 className="text-xl font-bold text-white leading-snug">
-          ¿Cuál es tu cédula de identidad?
+          ¿Cuál es tu cédula o RUC?
         </h2>
         <p className="text-sm text-white/60">
           Ingresa los dígitos sin espacios ni guiones.
@@ -30,7 +30,7 @@ export function StepCedula({ register, error }: StepCedulaProps) {
       </div>
 
       <Input
-        label="Cédula"
+        label="Cédula o RUC"
         placeholder="Ej: 0912345678"
         type="text"
         inputMode="numeric"

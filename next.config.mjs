@@ -21,7 +21,11 @@ const nextConfig = {
           // Limit referrer data sent to third parties
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           // Disable browser features not used by this app
-          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), payment=()' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=()' },
+          // Prevent cross-domain policy file loading (Flash/PDF)
+          { key: 'X-Permitted-Cross-Domain-Policies', value: 'none' },
+          // Isolate browsing context to same-origin
+          { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
           // Force HTTPS for 1 year (only effective in production over HTTPS)
           { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains' },
           // Prevent XSS by restricting resource origins

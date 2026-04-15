@@ -4,6 +4,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { createServerClient } from '@/lib/supabase/server';
+import { logAuditEvent } from '@/lib/audit';
+import { getClientIp } from '@/lib/ratelimit';
 import type { Participant } from '@/types';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -99,6 +101,10 @@ export async function GET(request: NextRequest): Promise<Response> {
     // ── 2. Parse optional query parameters ──────────────────────────────────
     const { searchParams } = request.nextUrl;
     const storeFilter = searchParams.get('store') ?? undefined;
+
+    // ── Audit log ────────────────────────────────────────────────────────────
+    const ip = getClientIp(request);
+    logAuditEvent({ action: 'admin.participants.export', ip, details: { store: storeFilter } });
 
     // ── 3. Query all matching participants ───────────────────────────────────
     const supabase = createServerClient();

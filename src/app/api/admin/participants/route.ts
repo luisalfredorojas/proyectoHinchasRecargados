@@ -4,6 +4,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { createServerClient } from '@/lib/supabase/server';
+import { logAuditEvent } from '@/lib/audit';
+import { getClientIp } from '@/lib/ratelimit';
 import type { Participant } from '@/types';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -59,6 +61,10 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const limit = Math.min(100, Math.max(1, parseInt(searchParams.get('limit') ?? String(DEFAULT_LIMIT), 10) || DEFAULT_LIMIT));
     const storeFilter = searchParams.get('store') ?? undefined;
     const search = searchParams.get('search') ?? undefined;
+
+    // ── Audit log (fire-and-forget, after auth + params) ─────────────────────
+    const ip = getClientIp(request);
+    logAuditEvent({ action: 'admin.participants.list', ip, details: { page, store: storeFilter, search } });
 
     // ── 3. Build Supabase query ──────────────────────────────────────────────
     const supabase = createServerClient();

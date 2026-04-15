@@ -3,6 +3,8 @@ import { ZodError } from 'zod';
 import { registerSchema } from '@/lib/schemas';
 import { getPrizeType } from '@/lib/constants';
 import { createServerClient } from '@/lib/supabase/server';
+import { registerLimiter, getClientIp } from '@/lib/ratelimit';
+import { isValidImageBuffer } from '@/lib/fileValidation';
 import type { Store } from '@/types';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -15,6 +17,16 @@ const STORAGE_BUCKET = 'invoices';
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
+    // ── 0. Rate limit by IP ──────────────────────────────────────────────────
+    const ip = getClientIp(request);
+    const { limited } = registerLimiter.check(ip);
+    if (limited) {
+      return NextResponse.json(
+        { success: false, error: 'Demasiados intentos de registro. Intenta de nuevo más tarde.' },
+        { status: 429 },
+      );
+    }
+
     // ── 1. Parse multipart FormData ──────────────────────────────────────────
     let formData: FormData;
     try {
@@ -101,14 +113,23 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       );
     }
 
-    // ── 4. Build unique filename ─────────────────────────────────────────────
+    // ── 4. Validate file magic bytes ───────────────────────────────────────
+    const invoiceBuffer = await invoice.arrayBuffer();
+
+    if (!isValidImageBuffer(invoiceBuffer)) {
+      return NextResponse.json(
+        { success: false, error: 'El archivo no es una imagen válida.' },
+        { status: 422 },
+      );
+    }
+
+    // ── 5. Build unique filename ─────────────────────────────────────────────
     // Derive extension from MIME type (e.g. image/jpeg → jpeg, image/png → png)
     const mimeExtension = invoice.type.split('/')[1]?.replace('jpeg', 'jpg') ?? 'jpg';
     const fileName = `${crypto.randomUUID()}_${Date.now()}.${mimeExtension}`;
 
-    // ── 5. Upload file to Supabase Storage ───────────────────────────────────
+    // ── 6. Upload file to Supabase Storage ───────────────────────────────────
     const supabase = createServerClient();
-    const invoiceBuffer = await invoice.arrayBuffer();
 
     const { error: storageError } = await supabase.storage
       .from(STORAGE_BUCKET)
