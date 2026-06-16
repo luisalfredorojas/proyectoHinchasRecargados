@@ -1,161 +1,75 @@
-'use client';
+// ── Pantalla de cierre del concurso ──────────────────────────────────────────
+// El concurso "Hinchas Recargados" ha finalizado. Se reemplazó el formulario de
+// registro por este mensaje. El flujo del wizard sigue disponible en
+// components/wizard si se necesita reactivar.
 
-import { useState } from 'react';
-import { WizardForm } from '@/components/wizard/WizardForm';
-import SuccessModal from '@/components/SuccessModal';
-import type { PrizeType } from '@/types';
-
-// ── Landing / Splash Screen ──────────────────────────────────────────────────
-
-function LandingScreen({ onParticipate }: { onParticipate: () => void }) {
+function ContestEndedContent({ size }: { size: 'mobile' | 'desktop' }) {
+  const isDesktop = size === 'desktop';
   return (
     <>
-      {/* ── MOBILE landing ── */}
-      <section className="lg:hidden min-h-screen flex flex-col justify-end bg-black bg-[url('/images/bg-mobile.png')] bg-[length:100%_auto] bg-top bg-no-repeat">
-        <div className="bg-gradient-to-t from-black via-black/90 to-transparent px-6 pt-8 mobile-safe-bottom text-center">
-          {/* Main heading */}
-          <h1 className="font-bold text-white uppercase leading-none tracking-wide" style={{ fontSize: '2.2rem' }}>
-            COMPRA PILAS
-          </h1>
-          <h1 className="font-bold text-white uppercase leading-none tracking-wide mb-2" style={{ fontSize: '2.2rem' }}>
-            DURACELL
-          </h1>
+      {/* Etiqueta superior */}
+      <p
+        className="font-bold uppercase tracking-[0.3em] mb-4"
+        style={{ color: '#BE7753', fontSize: isDesktop ? '1rem' : '0.8rem' }}
+      >
+        HINCHAS RECARGADOS
+      </p>
 
-          {/* Sub-heading in brand copper */}
-          <p className="text-lg font-bold uppercase leading-tight mb-1" style={{ color: '#BE7753' }}>
-            INGRESA TUS FACTURAS
-          </p>
+      {/* Título principal */}
+      <h1
+        className="font-bold text-white uppercase leading-none tracking-wide"
+        style={{ fontSize: isDesktop ? '3.5rem' : '2.4rem' }}
+      >
+        EL CONCURSO
+      </h1>
+      <h1
+        className="font-bold text-white uppercase leading-none tracking-wide mb-5"
+        style={{ fontSize: isDesktop ? '3.5rem' : '2.4rem' }}
+      >
+        HA TERMINADO
+      </h1>
 
-          {/* Tagline */}
-          <p className="font-bold text-white uppercase leading-none tracking-wide mb-5" style={{ fontSize: '1.8rem' }}>
-            Y PARTICIPA POR INCREIBLES PREMIOS
-          </p>
+      {/* Mensaje secundario */}
+      <p
+        className="font-bold text-white uppercase leading-tight mb-3"
+        style={{ fontSize: isDesktop ? '1.6rem' : '1.25rem' }}
+      >
+        ¡GRACIAS POR PARTICIPAR!
+      </p>
 
-          {/* CTA button */}
-          <button
-            type="button"
-            onClick={onParticipate}
-            className="block w-full text-center font-bold text-lg py-4 rounded-xl bg-gradient-to-r from-[#BE7753] to-[#F2B38C] text-black transition-all duration-300 active:scale-[0.97] hover:brightness-110 uppercase tracking-widest"
-          >
-            PARTICIPAR
-          </button>
-        </div>
-      </section>
-
-      {/* ── DESKTOP landing ── */}
-      <main className="hidden lg:grid lg:grid-cols-[1fr_480px] xl:grid-cols-[1fr_520px] min-h-screen bg-black bg-[url('/images/bg-desktop.png')] bg-cover bg-top">
-        {/* Left side — background fills this */}
-        <div />
-
-        {/* Right side — landing copy + CTA */}
-        <div className="flex items-center justify-center px-8 py-16 bg-gradient-to-t from-black via-black/80 to-transparent">
-          <div className="w-full max-w-md">
-            {/* Main heading */}
-            <h1 className="font-bold text-white uppercase leading-none tracking-wide mb-1" style={{ fontSize: '3rem' }}>
-              COMPRA PILAS
-            </h1>
-            <h1 className="font-bold text-white uppercase leading-none tracking-wide mb-4" style={{ fontSize: '3rem' }}>
-              DURACELL
-            </h1>
-
-            {/* Sub-heading in brand copper */}
-            <p className="text-3xl font-bold uppercase leading-tight mb-3" style={{ color: '#BE7753' }}>
-              INGRESA TUS FACTURAS
-            </p>
-
-            {/* Tagline */}
-            <p className="font-bold text-white uppercase leading-none tracking-wide mb-10" style={{ fontSize: '2.5rem' }}>
-              Y PARTICIPA POR INCREIBLES PREMIOS
-            </p>
-
-            {/* CTA button */}
-            <button
-              type="button"
-              onClick={onParticipate}
-              className="block w-full text-center font-bold text-xl py-5 rounded-xl bg-gradient-to-r from-[#BE7753] to-[#F2B38C] text-black transition-all duration-300 hover:brightness-110 uppercase tracking-widest"
-            >
-              PARTICIPAR
-            </button>
-          </div>
-        </div>
-      </main>
+      {/* Anuncio */}
+      <p
+        className="text-white/80 leading-snug"
+        style={{ fontSize: isDesktop ? '1.15rem' : '1rem' }}
+      >
+        Muy pronto anunciaremos a los participantes ganadores.
+      </p>
     </>
   );
 }
 
-// ── Main page ────────────────────────────────────────────────────────────────
-
 export default function Home() {
-  const [showLanding, setShowLanding] = useState(true);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [prizeType, setPrizeType] = useState<PrizeType | null>(null);
-  const [formKey, setFormKey] = useState(0);
-
-  const handleParticipate = () => {
-    setShowLanding(false);
-    // Give React a tick to render the form section before scrolling
-    setTimeout(() => {
-      document.getElementById('registro')?.scrollIntoView({ behavior: 'smooth' });
-    }, 50);
-  };
-
-  const handleSuccess = (receivedPrizeType: string) => {
-    setPrizeType(receivedPrizeType as PrizeType);
-    setShowSuccess(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowSuccess(false);
-    setPrizeType(null);
-    setFormKey((k) => k + 1);
-  };
-
-  // Show landing splash screen until user clicks PARTICIPAR
-  if (showLanding) {
-    return <LandingScreen onParticipate={handleParticipate} />;
-  }
-
   return (
     <>
-      {/* ── MOBILE: Section 1 — Full-screen hero ── */}
+      {/* ── MOBILE ── */}
       <section className="lg:hidden min-h-screen flex flex-col justify-end bg-black bg-[url('/images/bg-mobile.png')] bg-[length:100%_auto] bg-top bg-no-repeat">
-        <div className="p-6 mobile-safe-bottom">
-          <a
-            href="#registro"
-            className="block w-full text-center font-bold text-lg py-4 rounded-xl bg-gradient-to-r from-[#BE7753] to-[#F2B38C] text-black transition-all duration-300 active:scale-[0.97] hover:brightness-110"
-          >
-            ¡Participa ya!
-          </a>
+        <div className="bg-gradient-to-t from-black via-black/90 to-transparent px-6 pt-12 mobile-safe-bottom text-center">
+          <ContestEndedContent size="mobile" />
         </div>
       </section>
 
-      {/* ── MOBILE: Section 2 — Form ── */}
-      <section id="registro" className="lg:hidden min-h-screen flex items-start justify-center px-4 pt-10 pb-12 bg-black">
-        <div className="w-full max-w-md">
-          <WizardForm key={formKey} onSuccess={handleSuccess} />
-        </div>
-      </section>
-
-      {/* ── DESKTOP: Single section — grid: left empty (background), right form ── */}
+      {/* ── DESKTOP ── */}
       <main className="hidden lg:grid lg:grid-cols-[1fr_480px] xl:grid-cols-[1fr_520px] min-h-screen bg-black bg-[url('/images/bg-desktop.png')] bg-cover bg-top">
-        {/* Left side — empty, background will fill this */}
+        {/* Lado izquierdo — lo llena el fondo */}
         <div />
-        {/* Right side — form, vertically centered */}
-        <div className="flex items-center justify-center px-8 py-12">
+
+        {/* Lado derecho — mensaje de cierre */}
+        <div className="flex items-center justify-center px-8 py-16 bg-gradient-to-t from-black via-black/80 to-transparent">
           <div className="w-full max-w-md">
-            <WizardForm key={formKey} onSuccess={handleSuccess} />
+            <ContestEndedContent size="desktop" />
           </div>
         </div>
       </main>
-
-      {/* Success modal */}
-      {showSuccess && prizeType !== null && (
-        <SuccessModal
-          isOpen={showSuccess}
-          prizeType={prizeType}
-          onClose={handleCloseModal}
-        />
-      )}
     </>
   );
 }
